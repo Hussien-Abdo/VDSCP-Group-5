@@ -15,7 +15,6 @@
 #include "ManagerInterface.h"
 
 namespace ClassProject {
-
     class Manager: public ManagerInterface {
 
     private:
@@ -65,7 +64,7 @@ namespace ClassProject {
 
     size_t uniqueTableSize();
 
-}
+};
 
 }
 #endif

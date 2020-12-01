@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/habi/CLionProjects/VDSCP-Group-5/src/Manager.cpp
+cassert
+-
+Manager.h
+/home/habi/CLionProjects/VDSCP-Group-5/src/Manager.h
+
+/home/habi/CLionProjects/VDSCP-Group-5/src/Manager.h
+cassert
+-
+iostream
+-
+list
+-
+vector
+-
+unordered_map
+-
+set
+-
+string
+-
+ManagerInterface.h
+/home/habi/CLionProjects/VDSCP-Group-5/src/ManagerInterface.h
+
+/home/habi/CLionProjects/VDSCP-Group-5/src/ManagerInterface.cpp
+ManagerInterface.h
+/home/habi/CLionProjects/VDSCP-Group-5/src/ManagerInterface.h
+
+/home/habi/CLionProjects/VDSCP-Group-5/src/ManagerInterface.h
+string
+-
+set
+-
+

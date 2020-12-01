@@ -1,0 +1,5 @@
+if(EXISTS "/home/habi/CLionProjects/VDSCP-Group-5/cmake-build-debug/VDSProject_tests[1]_tests.cmake")
+  include("/home/habi/CLionProjects/VDSCP-Group-5/cmake-build-debug/VDSProject_tests[1]_tests.cmake")
+else()
+  add_test(VDSProject_tests_NOT_BUILT VDSProject_tests_NOT_BUILT)
+endif()
