@@ -14,11 +14,12 @@ namespace ClassProject {
 
     class ManagerInterface {
     public:
+
         virtual BDD_ID createVar(const std::string &label) = 0;
 
         virtual   const BDD_ID &True() = 0;
 
-        virtual   const BDD_ID &False() = 0;
+        virtual   const BDD_ID &False() = 0;    //EXPECT(0, manager.False())
 
         virtual   bool isConstant(const BDD_ID f) = 0;
 
@@ -38,7 +39,7 @@ namespace ClassProject {
 
         virtual   BDD_ID and2(const BDD_ID a, const BDD_ID b) = 0;
 
-        virtual   BDD_ID or2(const BDD_ID a, const BDD_ID b) = 0;
+        virtual   BDD_ID or2(const BDD_ID a, const BDD_ID b) = 0;   //a = 2; b=3; or(a,b) => or(2,3)
 
         virtual   BDD_ID xor2(const BDD_ID a, const BDD_ID b) = 0;
 
