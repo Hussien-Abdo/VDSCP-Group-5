@@ -5,11 +5,20 @@
 #include "BDD_Id.h"
 
 BDD_Id::BDD_Id(int id, const std::string &label, BDD_Id *high, BDD_Id *low, BDD_Id *topVar) {
-
+    ID=id;
+    Label=label;
+    Top_Var = topVar;
+    High=high;
+    Low=low;
+    Top_Var = topVar;
 }
 
 BDD_Id::BDD_Id(int id, const std::string &label, BDD_Id *topVar) {
-
+    ID=id;
+    Label=label;
+    Top_Var = topVar;
+    High=NULL;
+    Low=NULL;
 }
 
 int BDD_Id::getId() const {
