@@ -38,7 +38,7 @@ namespace {
     }
     TEST(ManagerClass, CreateVar){
         Manager m=Manager();
-        Expe
-
+        BDD_ID  varID=m.createVar("TestVar");
+        EXPECT_TRUE(m.isVariable(varID));
     }
 }
