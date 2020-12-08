@@ -32,7 +32,9 @@ namespace ClassProject {
     }
 
     bool Manager::isConstant(const BDD_ID f) {
-        return false;
+        HashCode hashcode = unique_table[f];
+        return (hashcode.getHigh() == 1 || hashcode.getHigh() == 0) &&
+               (hashcode.getLow() == 0 || hashcode.getLow() == 1);
     }
 
     bool Manager::isVariable(const BDD_ID x) {
