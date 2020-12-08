@@ -40,7 +40,7 @@ namespace ClassProject {
     bool Manager::isVariable(const BDD_ID x) {
         HashCode hashcode = unique_table[x];
         return (hashcode.getHigh() == 1 || hashcode.getHigh() == 0) &&
-               (hashcode.getLow() == 0 || hashcode.getLow() == 1);
+               (hashcode.getLow() == 0 || hashcode.getLow() == 1) && (hashcode.getTopVar() != 1 && hashcode.getTopVar() != 0);
     }
 
     BDD_ID Manager::topVar(const BDD_ID f) {
