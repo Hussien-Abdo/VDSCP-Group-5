@@ -30,4 +30,8 @@ namespace {
         EXPECT_TRUE(m.isConstant(1));
         EXPECT_TRUE(m.isConstant(0));
     }
+
+    TEST(ManagerClass, IsVariable){
+
+    }
 }

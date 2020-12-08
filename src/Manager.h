@@ -21,6 +21,7 @@ namespace ClassProject {
         BDD_ID nodes_id;
         std::unordered_map<BDD_ID,HashCode> unique_table;
 
+
     public:
     Manager();
     HashCode getHashCode(BDD_ID id);

@@ -13,6 +13,7 @@ namespace ClassProject {
         unique_table[0] = HashCode("0", 0, 0, 0);
         unique_table[1] = HashCode("1", 1, 1, 1);
         nodes_id += 2;
+
     }
 
     HashCode Manager::getHashCode(BDD_ID id) {
