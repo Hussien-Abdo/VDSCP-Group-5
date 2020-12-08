@@ -23,6 +23,7 @@ namespace ClassProject {
 
     public:
     Manager();
+    HashCode getHashCode(BDD_ID id);
 
     BDD_ID createVar(const std::string &label);
 

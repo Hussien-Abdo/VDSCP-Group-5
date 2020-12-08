@@ -1,5 +1,5 @@
 //
-// Created by habi on 08.12.20.
+// Created by Mohamed Moursi on 08.12.20.
 //
 
 #ifndef VDSPROJECT_HASHCODE_H
@@ -8,7 +8,9 @@
 typedef size_t BDD_ID;
 class HashCode {
 public:
+
     HashCode();
+
     HashCode(const std::string &label, BDD_ID high, BDD_ID low, BDD_ID topVar);
 
     const std::string &getLabel() const;
