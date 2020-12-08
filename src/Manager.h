@@ -14,61 +14,65 @@
 #include <string>
 #include "ManagerInterface.h"
 #include "HashCode.h"
+
 namespace ClassProject {
-    class Manager: public ManagerInterface {
+    class Manager : public ManagerInterface {
 
     private:
         BDD_ID nodes_id;
-        std::unordered_map<BDD_ID,HashCode> unique_table;
+        BDD_ID search_result;
+        std::unordered_map<BDD_ID, HashCode> unique_table;
 
 
     public:
-    Manager();
-    HashCode getHashCode(BDD_ID id);
+        Manager();
 
-    BDD_ID createVar(const std::string &label);
+        HashCode getHashCode(BDD_ID id);
 
-    const BDD_ID &True();
+        BDD_ID createVar(const std::string &label);
 
-    const BDD_ID &False();    //EXPECT(0, manager.False())
+        const BDD_ID &True();
 
-    bool isConstant(const BDD_ID f);
+        const BDD_ID &False();    //EXPECT(0, manager.False())
 
-    bool isVariable(const BDD_ID x);
+        bool isConstant(const BDD_ID f);
 
-    BDD_ID topVar(const BDD_ID f);
+        bool isVariable(const BDD_ID x);
 
-    BDD_ID ite(const BDD_ID i, const BDD_ID t, const BDD_ID e);
+        BDD_ID topVar(const BDD_ID f);
 
-    BDD_ID coFactorTrue(const BDD_ID f, BDD_ID x);
+        BDD_ID ite(const BDD_ID i, const BDD_ID t, const BDD_ID e);
 
-    BDD_ID coFactorFalse(const BDD_ID f, BDD_ID x);
+        BDD_ID coFactorTrue(const BDD_ID f, BDD_ID x);
 
-    BDD_ID coFactorTrue(const BDD_ID f);
+        BDD_ID coFactorFalse(const BDD_ID f, BDD_ID x);
 
-    BDD_ID coFactorFalse(const BDD_ID f);
+        BDD_ID coFactorTrue(const BDD_ID f);
 
-    BDD_ID and2(const BDD_ID a, const BDD_ID b);
+        BDD_ID coFactorFalse(const BDD_ID f);
 
-    BDD_ID or2(const BDD_ID a, const BDD_ID b);   //a = 2; b=3; or(a,b) => or(2,3)
+        BDD_ID and2(const BDD_ID a, const BDD_ID b);
 
-    BDD_ID xor2(const BDD_ID a, const BDD_ID b);
+        BDD_ID or2(const BDD_ID a, const BDD_ID b);   //a = 2; b=3; or(a,b) => or(2,3)
 
-    BDD_ID neg(const BDD_ID a);
+        BDD_ID xor2(const BDD_ID a, const BDD_ID b);
 
-    BDD_ID nand2(const BDD_ID a, const BDD_ID b);
+        BDD_ID neg(const BDD_ID a);
 
-    BDD_ID nor2(const BDD_ID a, const BDD_ID b);
+        BDD_ID nand2(const BDD_ID a, const BDD_ID b);
 
-    std::string getTopVarName(const BDD_ID &root);
+        BDD_ID nor2(const BDD_ID a, const BDD_ID b);
 
-    void findNodes(const BDD_ID &root, std::set <BDD_ID> &nodes_of_root);
+        std::string getTopVarName(const BDD_ID &root);
 
-    void findVars(const BDD_ID &root, std::set <BDD_ID> &vars_of_root);
+        void findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root);
 
-    size_t uniqueTableSize();
+        void findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root);
 
-};
+        size_t uniqueTableSize();
+
+        BDD_ID& searchHashCode(HashCode hashCode);
+    };
 
 }
 #endif

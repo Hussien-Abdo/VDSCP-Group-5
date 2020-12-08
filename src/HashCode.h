@@ -30,6 +30,7 @@ public:
     void setTopVar(BDD_ID topVar);
 
     bool operator==(const HashCode &other) const;
+
 private:
     std::string Label;
     BDD_ID High;

@@ -2,7 +2,6 @@
 
 #include "Manager.h"
 
-
 // Local Variables:
 // mode: c++
 // End:
@@ -10,6 +9,7 @@ namespace ClassProject {
 
     Manager::Manager() {
         nodes_id = 0;
+        search_result = -1;
         unique_table[0] = HashCode("0", 0, 0, 0);
         unique_table[1] = HashCode("1", 1, 1, 1);
         nodes_id += 2;
@@ -25,21 +25,22 @@ namespace ClassProject {
     }
 
     const BDD_ID &Manager::True() {
-        return nodes_id;
+        return searchHashCode(HashCode ("1", 1, 1, 1));
     }
 
     const BDD_ID &Manager::False() {
-        return nodes_id;
+        return searchHashCode(HashCode ("0", 0, 0, 0));
     }
 
     bool Manager::isConstant(const BDD_ID f) {
         HashCode hashcode = unique_table[f];
-        return (hashcode.getHigh() == 1 || hashcode.getHigh() == 0) &&
-               (hashcode.getLow() == 0 || hashcode.getLow() == 1);
+        return (hashcode.getTopVar() == 1 || hashcode.getTopVar() == 0);
     }
 
     bool Manager::isVariable(const BDD_ID x) {
-        return false;
+        HashCode hashcode = unique_table[x];
+        return (hashcode.getHigh() == 1 || hashcode.getHigh() == 0) &&
+               (hashcode.getLow() == 0 || hashcode.getLow() == 1);
     }
 
     BDD_ID Manager::topVar(const BDD_ID f) {
@@ -106,4 +107,15 @@ namespace ClassProject {
         return 0;
     }
 
+// Iterate over an unordered_map using range based for loop
+BDD_ID& Manager::searchHashCode(HashCode hashCode){
+        for (std::pair<BDD_ID, HashCode> element : unique_table)
+        {
+            if (element.second ==  hashCode){
+                search_result = element.first;
+                return search_result;
+            }
+        }
+        return search_result;
+    }
 }
