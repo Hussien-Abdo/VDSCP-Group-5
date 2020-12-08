@@ -93,7 +93,8 @@ namespace ClassProject {
     }
 
     std::string Manager::getTopVarName(const BDD_ID &root) {
-        return std::string();
+        BDD_ID topVarId=unique_table[root].getTopVar();
+        return unique_table[topVarId].getLabel();
     }
 
     void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) {

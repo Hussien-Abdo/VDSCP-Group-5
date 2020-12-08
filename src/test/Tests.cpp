@@ -41,4 +41,9 @@ namespace {
         BDD_ID  varID=m.createVar("TestVar");
         EXPECT_TRUE(m.isVariable(varID));
     }
+
+    TEST(ManagerClass, getTopVarName){
+        Manager m=Manager();
+
+    }
 }
