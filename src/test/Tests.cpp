@@ -36,4 +36,9 @@ namespace {
         EXPECT_FALSE(m.isVariable(1));
         EXPECT_FALSE(m.isVariable(0));
     }
+    TEST(ManagerClass, CreateVar){
+        Manager m=Manager();
+        Expe
+
+    }
 }

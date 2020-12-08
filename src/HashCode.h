@@ -13,6 +13,8 @@ public:
 
     HashCode(const std::string &label, BDD_ID high, BDD_ID low, BDD_ID topVar);
 
+    HashCode(const std::string &label);
+
     const std::string &getLabel() const;
 
     void setLabel(const std::string &label);

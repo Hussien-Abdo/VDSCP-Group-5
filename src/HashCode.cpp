@@ -6,6 +6,10 @@
 #include "HashCode.h"
 HashCode::HashCode(){};
 
+HashCode::HashCode(const std::string &label) {
+    Label=label;
+}
+
 HashCode::HashCode(const std::string &label, BDD_ID high, BDD_ID low, BDD_ID topVar) {
 Label=label;
 High=high;
