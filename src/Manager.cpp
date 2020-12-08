@@ -21,7 +21,9 @@ namespace ClassProject {
     }
 
     BDD_ID Manager::createVar(const std::string &label) {
-        return 0;
+        nodes_id++;
+        unique_table[nodes_id] = HashCode(label,True(),False(),nodes_id);
+        return nodes_id;
     }
 
     const BDD_ID &Manager::True() {
