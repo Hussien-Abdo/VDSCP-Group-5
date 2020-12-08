@@ -13,9 +13,11 @@
 #include <set>
 #include <string>
 #include "ManagerInterface.h"
-
+#include "HashCode.h"
 namespace ClassProject {
     class Manager: public ManagerInterface {
+    public:
+        Manager();
 
     private:
 

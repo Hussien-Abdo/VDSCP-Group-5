@@ -7,7 +7,8 @@
 
 #include "gtest/gtest.h"
 #include "../Manager.h"
-#include "../BDD_Id.h"
-#include "../BDD_Id.cpp"
+#include "../Manager.cpp"
+#include "../HashCode.h"
+#include "../HashCode.cpp"
 #endif //VDS_PROJECT_TESTS_H
 

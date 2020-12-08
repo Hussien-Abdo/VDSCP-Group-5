@@ -12,7 +12,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src/test/)
 link_directories(${CMAKE_SOURCE_DIR}/src/test/)
 
 add_subdirectory(src)
-add_executable(VDSProject src/main.cpp src/BDD_Id.cpp src/BDD_Id.h)
+add_executable(VDSProject src/main.cpp src/HashCode.cpp src/HashCode.h)
 target_link_libraries(VDSProject Manager)
 
 include(FetchContent)
