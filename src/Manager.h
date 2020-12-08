@@ -16,13 +16,13 @@
 #include "HashCode.h"
 namespace ClassProject {
     class Manager: public ManagerInterface {
-    public:
-        Manager();
 
     private:
-
+        BDD_ID nodes_id;
+        std::unordered_map<BDD_ID,HashCode> unique_table;
 
     public:
+    Manager();
 
     BDD_ID createVar(const std::string &label);
 

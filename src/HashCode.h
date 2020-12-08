@@ -1,37 +1,38 @@
 //
-// Created by Mohamed Moursi on 01.12.20.
+// Created by habi on 08.12.20.
 //
+
 #ifndef VDSPROJECT_HASHCODE_H
 #define VDSPROJECT_HASHCODE_H
 
-
-#include <string>
-
+typedef size_t BDD_ID;
 class HashCode {
 public:
-    HashCode(const std::string label, HashCode *high, HashCode *low, HashCode *topVar);
+    HashCode();
+    HashCode(const std::string &label, BDD_ID high, BDD_ID low, BDD_ID topVar);
 
-    const std::string getLabel() const;
+    const std::string &getLabel() const;
 
-    void setLabel(const std::string label);
+    void setLabel(const std::string &label);
 
-    HashCode *getHigh() const;
+    BDD_ID getHigh() const;
 
-    void setHigh(HashCode *high);
+    void setHigh(BDD_ID high);
 
-    HashCode *getLow() const;
+    BDD_ID getLow() const;
 
-    void setLow(HashCode *low);
+    void setLow(BDD_ID low);
 
-    HashCode *getTopVar() const;
+    BDD_ID getTopVar() const;
 
-    void setTopVar(HashCode *topVar);
+    void setTopVar(BDD_ID topVar);
 
+    bool operator==(const HashCode &other) const;
 private:
     std::string Label;
-    HashCode *High;
-    HashCode *Low;
-    HashCode *Top_Var;
+    BDD_ID High;
+    BDD_ID Low;
+    BDD_ID Top_Var;
 };
 
 

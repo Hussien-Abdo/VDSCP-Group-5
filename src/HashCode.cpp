@@ -1,45 +1,51 @@
 //
-// Created by Mohamed Moursi on 01.12.20.
+// Created by habi on 08.12.20.
 //
 
+#include <string>
 #include "HashCode.h"
 
-HashCode::HashCode(const std::string label, HashCode *high, HashCode *low, HashCode *topVar) {
-    Label=label;
-    Top_Var = topVar;
-    High=high;
-    Low=low;
-    Top_Var = topVar;
+HashCode::HashCode() {}
+
+HashCode::HashCode(const std::string &label, BDD_ID high, BDD_ID low, BDD_ID topVar) {
+Label=label;
+High=high;
+Low=low;
+Top_Var=topVar;
 }
 
-const std::string HashCode::getLabel() const {
+const std::string &HashCode::getLabel() const {
     return Label;
 }
 
-void HashCode::setLabel(const std::string label) {
+void HashCode::setLabel(const std::string &label) {
     Label = label;
 }
 
-HashCode *HashCode::getHigh() const {
+BDD_ID HashCode::getHigh() const {
     return High;
 }
 
-void HashCode::setHigh(HashCode *high) {
+void HashCode::setHigh(BDD_ID high) {
     High = high;
 }
 
-HashCode *HashCode::getLow() const {
+BDD_ID HashCode::getLow() const {
     return Low;
 }
 
-void HashCode::setLow(HashCode *low) {
+void HashCode::setLow(BDD_ID low) {
     Low = low;
 }
 
-HashCode *HashCode::getTopVar() const {
+BDD_ID HashCode::getTopVar() const {
     return Top_Var;
 }
 
-void HashCode::setTopVar(HashCode *topVar) {
+void HashCode::setTopVar(BDD_ID topVar) {
     Top_Var = topVar;
+}
+
+bool HashCode::operator==(const HashCode &other) const {
+    return this->getTopVar()==other.getTopVar()&&this->getHigh()==other.getHigh()&&this->getLow()==other.getLow();
 }
