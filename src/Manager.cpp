@@ -58,7 +58,11 @@ namespace ClassProject {
             return e;
         } else if (t==0 && e==1){
             return neg(i);
-        }
+        }/* else if (searchComputedTable(f, g, h) != -1){
+            return searchComputedTable(f, g, h);
+        } else if (){
+
+        }*/
         return 0;
     }
 

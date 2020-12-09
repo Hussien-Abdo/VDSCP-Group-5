@@ -22,6 +22,7 @@ namespace ClassProject {
         BDD_ID nodes_id;
         BDD_ID search_result;
         std::unordered_map<BDD_ID, HashCode> unique_table;
+        std::unordered_map<BDD_ID, HashCode> computed_table;
 
 
     public:

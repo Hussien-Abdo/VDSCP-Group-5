@@ -43,6 +43,14 @@ namespace {
         EXPECT_TRUE(m.isVariable(varID));
     }
 
+    TEST(ManagerClass, TopVarId) {
+        Manager m = Manager();
+        const BDD_ID varId1 = m.createVar("TestVar1");
+        const BDD_ID varId2 = m.createVar("TestVar2");
+        EXPECT_EQ(m.topVar(varId1), varId1);
+        EXPECT_EQ(m.topVar(varId2), varId2);
+    }
+
     TEST(ManagerClass, getTopVarName) {
         Manager m = Manager();
         const BDD_ID varId1 = m.createVar("TestVar1");
