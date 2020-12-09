@@ -45,7 +45,7 @@ namespace ClassProject {
     }
 
     BDD_ID Manager::topVar(const BDD_ID f) {
-        return 0;
+        return unique_table[f].getTopVar();
     }
 
     BDD_ID Manager::ite(const BDD_ID i, const BDD_ID t, const BDD_ID e) {
