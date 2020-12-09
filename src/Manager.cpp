@@ -50,12 +50,12 @@ namespace ClassProject {
 
     BDD_ID Manager::ite(const BDD_ID i, const BDD_ID t, const BDD_ID e) {
         //Terminal cases
-        if (i==1 || t==e){
+        if (t==1 && e==0) {
+            return i;
+        } else if (i==1 || t==e){
             return t;
         } else if (i==0){
             return e;
-        } else if (t==1 && e==01){
-            return i;
         } else if (t==0 && e==1){
             return neg(i);
         }
