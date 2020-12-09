@@ -52,4 +52,16 @@ namespace {
         const char *TopVarName2 = m.getTopVarName(varId2).c_str();
         EXPECT_STREQ(TopVarName2, "TestVar2");
     }
+
+    TEST(ManagerClass,iteTerminal){
+        Manager m = Manager();
+        const BDD_ID f = m.createVar("TestVar1");
+        const BDD_ID g = m.createVar("TestVar2");
+        EXPECT_EQ(m.ite(1, f, g), f);
+        EXPECT_EQ(m.ite(0, g, f), f);
+        EXPECT_EQ(m.ite(f, 1, 0), f);
+        EXPECT_EQ(m.ite(g,f,f), f);
+        //EXPECT_EQ(m.ite(f,0,1), neg(f));
+
+    }
 }
