@@ -1,7 +1,7 @@
 #include <cassert>
 
 #include "Manager.h"
-
+#include "iostream"
 // Local Variables:
 // mode: c++
 // End:
@@ -27,11 +27,11 @@ namespace ClassProject {
     }
 
     const BDD_ID &Manager::True() {
-        return searchHashCode(HashCode("1", 1, 1, 1));
+        return searchUniqueTable(HashCode("1", 1, 1, 1));
     }
 
     const BDD_ID &Manager::False() {
-        return searchHashCode(HashCode("0", 0, 0, 0));
+        return searchUniqueTable(HashCode("0", 0, 0, 0));
     }
 
     bool Manager::isConstant(const BDD_ID f) {
@@ -63,11 +63,7 @@ namespace ClassProject {
             if (result != -1)
                 return result;
         }
-        BDD_ID ite_top_var;
-        if (t == 0 || t == 1) // i is already checked during terminal cases & if it's not i nor t then it's e
-            ite_top_var = getHighestVar(i, e);
-        else
-            ite_top_var = getHighestVar(i, t);
+        BDD_ID ite_top_var = getHighestVar(std::set<BDD_ID> {i,t,e});
         BDD_ID i_topVarTrue = coFactorTrue(i, ite_top_var);
         BDD_ID i_topVarFalse = coFactorFalse(i, ite_top_var);
         BDD_ID t_topVarTrue = coFactorTrue(t, ite_top_var);
@@ -163,7 +159,7 @@ namespace ClassProject {
         return 0;
     }
 
-    BDD_ID &Manager::searchHashCode(const HashCode &hashCode) {
+    BDD_ID &Manager::searchUniqueTable(const HashCode &hashCode) {
         for (std::pair<BDD_ID, HashCode> element : unique_table) {
             if (element.second == hashCode) {
                 search_result = element.first;
@@ -181,17 +177,35 @@ namespace ClassProject {
         return -1;
     }
 
-    /*! Takes two vars and returns the highest priority
+
+    /*! Takes set of vars and returns the highest priority
      *
      * The priority is defined by the order of insertion in the unique_table
-     * @param a First variable
-     * @param b Second variable
-     * @return The variabel with the higher priority
+     * @param varsSet Set of variables
+     * @return The variable with the highest priority
      */
-    BDD_ID Manager::getHighestVar(BDD_ID a, BDD_ID b) {
-        if (a > b)
-            return a;
-        return b;
+    BDD_ID Manager::getHighestVar(std::set<BDD_ID> varsSet) {
+        BDD_ID result;
+        for (std::set<BDD_ID>::iterator it=varsSet.begin(); it!=varsSet.end();){
+            if(isConstant(*it)){
+                it=varsSet.erase(it);
+            }
+            else
+                it++;
+        }
+        result=*varsSet.begin();
+        for(BDD_ID element:varsSet){
+            if(topVar(element)<topVar(result))
+                result=element;
+        }
+        return topVar(result);
+    }
+
+    void Manager::printUniqueTable(){
+
+        for (std::pair<BDD_ID, HashCode> element : unique_table) {
+            std::cout<< element.first << "\t" << element.second.getLabel() << "\t" << element.second.getHigh() << "\t" << element.second.getLow() << "\t" << element.second.getTopVar() << "\t" << getTopVarName(element.second.getTopVar())<<"\n";
+        }
     }
 
 }

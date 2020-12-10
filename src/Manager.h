@@ -70,13 +70,15 @@ namespace ClassProject {
 
         size_t uniqueTableSize();
 
-        BDD_ID &searchHashCode(const HashCode& hashCode);
+        BDD_ID &searchUniqueTable(const HashCode& hashCode);
 
         HashCode getHashCode(BDD_ID id);
 
         BDD_ID searchComputedTable(BDD_ID i, BDD_ID t, BDD_ID e);
 
-        static BDD_ID getHighestVar(BDD_ID a, BDD_ID b);
+        BDD_ID getHighestVar(std::set<BDD_ID> varsSet);
+
+        void printUniqueTable();
     };
 
 }

@@ -69,7 +69,44 @@ namespace {
         EXPECT_EQ(m.ite(0, g, f), f);
         EXPECT_EQ(m.ite(f, 1, 0), f);
         EXPECT_EQ(m.ite(g,f,f), f);
+        m.printUniqueTable();
         //EXPECT_EQ(m.ite(f,0,1), neg(f));
+    }
+    TEST(ManagerClass,ITE_Basic_And2){
+        Manager m = Manager();
+        EXPECT_EQ(m.and2(m.True(),m.False()),0);
+        EXPECT_EQ(m.and2(m.True(),m.True()),1);
+        EXPECT_EQ(m.and2(m.False(),m.False()),0);
+        EXPECT_EQ(m.and2(m.False(),m.True()),0);
 
     }
+
+    TEST(ManagerClass,ITE_Basic_Or2){
+        Manager m = Manager();
+        EXPECT_EQ(m.or2(m.True(),m.False()),1);
+        EXPECT_EQ(m.or2(m.True(),m.True()),1);
+        EXPECT_EQ(m.or2(m.False(),m.False()),0);
+        EXPECT_EQ(m.or2(m.False(),m.True()),1);
+
+    }
+    TEST(ManagerClass,ITE_Function){
+        Manager m=Manager();
+        BDD_ID a=m.createVar("a");
+        BDD_ID b=m.createVar("b");
+        BDD_ID c=m.createVar("c");
+        BDD_ID d=m.createVar("d");
+        BDD_ID or2=m.or2(a,b);
+        BDD_ID and2=m.and2(c,d);
+        m.and2(or2,and2);
+        m.printUniqueTable();
+    }
+    TEST(ManagerClass,coFactorTrue){
+        Manager m=Manager();
+        BDD_ID a=m.createVar("a");
+        BDD_ID b=m.createVar("b");
+        BDD_ID c=m.createVar("c");
+        BDD_ID f=m.or2(a,m.and2(b,c));
+        EXPECT_EQ(f,m.True());
+    }
+
 }
