@@ -23,12 +23,10 @@ namespace ClassProject {
         BDD_ID node_id;
         BDD_ID search_result;
         std::unordered_map<BDD_ID, HashCode> unique_table;
-        std::unordered_map<int, BDD_ID> computed_table;
+        std::vector<std::array<BDD_ID,4>> computed_table;
 
     public:
         Manager();
-
-        HashCode getHashCode(BDD_ID id);
 
         BDD_ID createVar(const std::string &label);
 
@@ -72,7 +70,13 @@ namespace ClassProject {
 
         size_t uniqueTableSize();
 
-        BDD_ID& searchHashCode(HashCode hashCode);
+        BDD_ID &searchHashCode(const HashCode& hashCode);
+
+        HashCode getHashCode(BDD_ID id);
+
+        BDD_ID searchComputedTable(BDD_ID i, BDD_ID t, BDD_ID e);
+
+        static BDD_ID getHighestVar(BDD_ID a, BDD_ID b);
     };
 
 }
