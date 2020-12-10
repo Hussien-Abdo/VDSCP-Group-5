@@ -54,8 +54,6 @@ namespace ClassProject {
             return t;
         } else if (i == 0) {
             return e;
-        } else if (t == 0 && e == 1) {
-            return 0;
         } else {
             BDD_ID result = searchComputedTable(i, t, e);
             if (result != -1)

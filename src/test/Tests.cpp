@@ -102,5 +102,16 @@ namespace {
     TEST_F(ManagerTest, uniqueTableSize) {
         EXPECT_EQ(m.uniqueTableSize(), 2);
     }
-
+    TEST_F(ManagerTest, negTest){
+        SetUp(1);
+        m.neg(var1);
+        m.printUniqueTable();
+    }
+    TEST_F(ManagerTest, nand2Test){
+        EXPECT_EQ(m.nand2(m.False(),m.False()),1);
+        EXPECT_EQ(m.nand2(m.False(),m.True()),0);
+        EXPECT_EQ(m.nand2(m.True(),m.False()),0);
+        EXPECT_EQ(m.nand2(m.True(),m.True()),0);
+        m.printUniqueTable();
+    }
 }
