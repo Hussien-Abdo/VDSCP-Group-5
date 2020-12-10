@@ -1,5 +1,3 @@
-#include <cassert>
-
 #include "Manager.h"
 #include "iostream"
 // Local Variables:
@@ -76,7 +74,7 @@ namespace ClassProject {
             return r_high;
         }
         node_id++;
-        node = std::to_string(node_id);
+        std::string node = std::to_string(node_id);
         unique_table[node_id] = HashCode(node, r_high, r_low, ite_top_var);
         std::array<BDD_ID, 4> ite_result = {i, t, e, node_id};
         computed_table.push_back(ite_result);
@@ -115,7 +113,7 @@ namespace ClassProject {
     }
 
     BDD_ID Manager::coFactorFalse(const BDD_ID f) {
-        return 0;
+        return coFactorFalse(f,topVar(f));
     }
 
     BDD_ID Manager::and2(const BDD_ID a, const BDD_ID b) {

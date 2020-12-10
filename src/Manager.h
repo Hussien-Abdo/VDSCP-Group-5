@@ -19,7 +19,6 @@ namespace ClassProject {
     class Manager : public ManagerInterface {
 
     private:
-        std::string node;
         BDD_ID node_id;
         BDD_ID search_result;
         std::unordered_map<BDD_ID, HashCode> unique_table;

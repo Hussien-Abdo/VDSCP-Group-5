@@ -114,8 +114,11 @@ namespace {
         BDD_ID b=m.createVar("b");
         BDD_ID c=m.createVar("c");
         BDD_ID f=m.or2(a,m.and2(b,c));
-        m.printUniqueTable();
         EXPECT_EQ(m.coFactorFalse(f),5);
+    }
+    TEST(ManagerClass,uniqueTableSize){
+        Manager m=Manager();
+        EXPECT_EQ(m.uniqueTableSize(),2);
     }
 
 }
