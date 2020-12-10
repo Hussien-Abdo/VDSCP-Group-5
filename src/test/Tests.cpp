@@ -106,7 +106,7 @@ namespace {
         BDD_ID b=m.createVar("b");
         BDD_ID c=m.createVar("c");
         BDD_ID f=m.or2(a,m.and2(b,c));
-        EXPECT_EQ(f,m.True());
+        EXPECT_EQ(m.coFactorTrue(f),m.True());
     }
 
 }
