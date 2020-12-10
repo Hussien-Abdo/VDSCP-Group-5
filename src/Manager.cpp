@@ -154,7 +154,7 @@ namespace ClassProject {
     }
 
     size_t Manager::uniqueTableSize() {
-        return 0;
+        return unique_table.size();
     }
 
     BDD_ID &Manager::searchUniqueTable(const HashCode &hashCode) {
