@@ -111,7 +111,7 @@ namespace ClassProject {
     }
 
     BDD_ID Manager::coFactorTrue(const BDD_ID f) {
-        return 0;
+        return coFactorTrue(f,topVar(f));
     }
 
     BDD_ID Manager::coFactorFalse(const BDD_ID f) {
