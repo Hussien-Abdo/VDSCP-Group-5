@@ -143,4 +143,13 @@ namespace {
         m.findNodes(f,nodes_of_root);
         EXPECT_EQ(nodes_of_root.size(),3);
     }
+    TEST_F(ManagerTest, findVarsTest){
+        SetUp(4);
+        std::set<BDD_ID> vars_of_root;
+        BDD_ID or2 = m.or2(var1, var2);
+        BDD_ID and2 = m.and2(var3, var4);
+        BDD_ID f = m.and2(or2, and2);
+        m.findVars(f,vars_of_root);
+        EXPECT_EQ(vars_of_root.size(),4);
+    }
 }
