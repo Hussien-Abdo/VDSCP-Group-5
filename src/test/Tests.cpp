@@ -141,7 +141,7 @@ namespace {
         BDD_ID and2 = m.and2(var3, var4);
         BDD_ID f = m.and2(or2, and2);
         m.findNodes(f,nodes_of_root);
-        EXPECT_EQ(nodes_of_root.size(),3);
+        EXPECT_EQ(nodes_of_root.size(),4);
     }
     TEST_F(ManagerTest, findVarsTest){
         SetUp(4);

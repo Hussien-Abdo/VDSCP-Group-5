@@ -167,7 +167,7 @@ namespace ClassProject {
     }
 
     void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) {
-        if (!isVariable(root) && !isConstant(root)){
+        if (!isConstant(root)){
             nodes_of_root.insert(root);
             findNodes(unique_table[root].getHigh(),nodes_of_root);
             findNodes(unique_table[root].getLow(),nodes_of_root);
@@ -175,7 +175,16 @@ namespace ClassProject {
     }
 
     void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root) {
-
+        if (!isConstant(root)){
+            vars_of_root.insert(topVar(root));
+            findNodes(unique_table[root].getHigh(),vars_of_root);
+            findNodes(unique_table[root].getLow(),vars_of_root);
+        }
+//        std::set<BDD_ID> Sha3rahaAsfarWa3naha5adra;
+//        findNodes(root,Sha3rahaAsfarWa3naha5adra);
+//        for (BDD_ID element:Sha3rahaAsfarWa3naha5adra){
+//            vars_of_root.insert(topVar(element));
+//        }
     }
 
     size_t Manager::uniqueTableSize() {
