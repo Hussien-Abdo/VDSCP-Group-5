@@ -167,7 +167,11 @@ namespace ClassProject {
     }
 
     void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) {
-
+        if (!isVariable(root) && !isConstant(root)){
+            nodes_of_root.insert(root);
+            findNodes(unique_table[root].getHigh(),nodes_of_root);
+            findNodes(unique_table[root].getLow(),nodes_of_root);
+        }
     }
 
     void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root) {
