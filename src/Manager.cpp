@@ -26,11 +26,13 @@ namespace ClassProject {
     }
 
     const BDD_ID &Manager::True() {
-        return searchUniqueTable(HashCode("1", 1, 1, 1));
+        search_result=1;
+        return search_result;
     }
 
     const BDD_ID &Manager::False() {
-        return searchUniqueTable(HashCode("0", 0, 0, 0));
+        search_result=0;
+        return  search_result;
     }
 
     bool Manager::isConstant(const BDD_ID f) {
@@ -80,13 +82,6 @@ namespace ClassProject {
         }
         HashCode node = HashCode("", r_high, r_low, ite_top_var);
         node_id = FindOrAddToUniqueTable(node);
-//        BDD_ID result = searchUniqueTable(HashCode("", r_high, r_low, ite_top_var));
-//        if (result != -1) {
-//            return result;
-//        }
-//        node_id++;
-//        std::string node = std::to_string(node_id);
-//        unique_table[node_id] = HashCode(node, r_high, r_low, ite_top_var);
         std::array<BDD_ID, 4> ite_result = {i, t, e, node_id};
         computed_table.push_back(ite_result);
         return node_id;
@@ -132,7 +127,12 @@ namespace ClassProject {
             node_label += "and(" + unique_table[a].getLabel() + "," +unique_table[b].getLabel()+ ")";
         return ite(a, b, 0);
     }
-
+/*!
+ *
+ * @param a
+ * @param b
+ * @return
+ */
     BDD_ID Manager::or2(const BDD_ID a, const BDD_ID b) {
         if(isVariable(a) && isVariable(b))
             node_label += "or(" + unique_table[a].getLabel() + "," +unique_table[b].getLabel()+ ")";
@@ -235,28 +235,11 @@ namespace ClassProject {
     }
 
     void Manager::printUniqueTable() {
-        std::string adjustPrintinglabel= "";
+        printf("%*s %*s %*s %*s %*s %*s\n",16,"ID",16,"Label",16,"High",16,
+               "Low",16,"TopVar",16,"TopVarName");
         for (std::pair<BDD_ID, HashCode> element : unique_table) {
-            adjustPrintinglabel = element.second.getLabel();;
-            std::cout << element.first;
-            if (adjustPrintinglabel.size() > 7 ) {
-                std::cout << "\t\t\t\t" << element.second.getLabel();
-                std::cout << "\t\t\t" << element.second.getHigh();
-            }
-           if (adjustPrintinglabel.size() == 7){
-                std::cout << "\t\t\t\t" << element.second.getLabel();
-                std::cout << "\t\t\t\t" <<  element.second.getHigh();
-            }
-           if (adjustPrintinglabel.size() < 3 ){
-                std::cout << "\t\t\t\t" << element.second.getLabel();
-                std::cout << "\t\t\t\t" << element.second.getHigh();
-            }
-//                    << "\t\t\t" << element.second.getLabel()
-//                    << "\t\t\t" << element.second.getHigh()
-            std::cout     << "\t\t\t\t" << element.second.getLow()
-                    << "\t\t\t\t" << element.second.getTopVar()
-                    << "\t\t\t\t" << getTopVarName(element.second.getTopVar())
-                    << "\n";
+            printf("%*ld %*s %*ld %*ld %*ld %*s\n",16,element.first,16,element.second.getLabel().c_str(),16,element.second.getHigh(),16,
+                   element.second.getLow(),16,element.second.getTopVar(),16,getTopVarName(element.second.getTopVar()).c_str());
         }
     }
 

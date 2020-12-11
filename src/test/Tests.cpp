@@ -60,8 +60,8 @@ namespace {
         EXPECT_EQ(m.ite(0, var2, var1), var1);
         EXPECT_EQ(m.ite(var1, 1, 0), var1);
         EXPECT_EQ(m.ite(var2, var1, var1), var1);
+        EXPECT_EQ(m.ite(var1,0,1), m.neg(var1));
         m.printUniqueTable();
-        //EXPECT_EQ(m.ite(var1,0,1), neg(var1));
     }
 
     TEST_F(ManagerTest, ITE_Basic_And2) {
@@ -84,9 +84,10 @@ namespace {
         BDD_ID or2 = m.or2(var1, var2);
         BDD_ID and2 = m.and2(var3, var4);
         m.and2(or2, and2);
+        std::cout << "**************************** f = and(or(a,b),and(c,d)) ****************************\n";
         m.printUniqueTable();
-        std::cout << "uniqueTable after using neg()" << "\n";
-        m.neg(m.neg(m.and2(or2, and2)));
+        std::cout << "************************** f = neg(and(or(a,b),and(c,d))) **************************\n";
+        m.neg(m.and2(or2, and2));
         m.printUniqueTable();
     }
 
