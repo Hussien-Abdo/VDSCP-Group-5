@@ -245,7 +245,7 @@ namespace ClassProject {
             }
            if (adjustPrintinglabel.size() == 7){
                 std::cout << "\t\t\t\t" << element.second.getLabel();
-                std::cout << "\t\t\t\t" << element.second.getHigh();
+                std::cout << "\t\t\t\t" <<  element.second.getHigh();
             }
            if (adjustPrintinglabel.size() < 3 ){
                 std::cout << "\t\t\t\t" << element.second.getLabel();
