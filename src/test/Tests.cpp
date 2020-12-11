@@ -134,4 +134,13 @@ namespace {
         EXPECT_FALSE(m.xor2(m.True(),m.True()));
         m.printUniqueTable();
     }
+    TEST_F(ManagerTest, findNodesTest){
+        SetUp(4);
+        std::set<BDD_ID> nodes_of_root;
+        BDD_ID or2 = m.or2(var1, var2);
+        BDD_ID and2 = m.and2(var3, var4);
+        BDD_ID f = m.and2(or2, and2);
+        m.findNodes(f,nodes_of_root);
+        EXPECT_EQ(nodes_of_root.size(),3);
+    }
 }
