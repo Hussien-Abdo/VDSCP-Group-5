@@ -7,6 +7,7 @@
 namespace ClassProject {
 
     Manager::Manager() {
+        std::string node_label= "";
         node_id = 0;
         unique_table[0] = HashCode("0", 0, 0, 0);
         unique_table[1] = HashCode("1", 1, 1, 1);
@@ -55,20 +56,15 @@ namespace ClassProject {
         } else if (i == 0) {
             return e;
         } else if (!isConstant(i) && t == 0 && e == 1) {                    //negate case
-
-            std::string node = unique_table[i].getLabel();
-            if (node[0] == '!') node.erase(node.begin()); else node = "!" + node;
+            node_label= unique_table[i].getLabel();
+            if (node_label[0] == '!') node_label.erase(node_label.begin()); else node_label= "!" + node_label;
             HashCode not_i = HashCode("",unique_table[i].getLow(),unique_table[i].getHigh(),topVar(i));
             node_id = FindOrAddToUniqueTable(not_i);
-            unique_table[node_id].setLabel(node);
             return node_id;
-
         }else {
-
             BDD_ID result = searchComputedTable(i, t, e);
             if (result != -1)
                 return result;
-
         }
         BDD_ID ite_top_var = getHighestVar(std::set<BDD_ID>{i, t, e});
         BDD_ID i_topVarTrue = coFactorTrue(i, ite_top_var);
@@ -132,14 +128,20 @@ namespace ClassProject {
     }
 
     BDD_ID Manager::and2(const BDD_ID a, const BDD_ID b) {
+        if(isVariable(a) && isVariable(b))
+            node_label += "and(" + unique_table[a].getLabel() + "," +unique_table[b].getLabel()+ ")";
         return ite(a, b, 0);
     }
 
     BDD_ID Manager::or2(const BDD_ID a, const BDD_ID b) {
+        if(isVariable(a) && isVariable(b))
+            node_label += "or(" + unique_table[a].getLabel() + "," +unique_table[b].getLabel()+ ")";
         return ite(a, 1, b);
     }
 
     BDD_ID Manager::xor2(const BDD_ID a, const BDD_ID b) {
+        if(isVariable(a) && isVariable(b))
+            node_label += "xor(" + unique_table[a].getLabel() + "," +unique_table[b].getLabel()+ ")";
         return ite(a, neg(b), b);
     }
 
@@ -148,10 +150,14 @@ namespace ClassProject {
     }
 
     BDD_ID Manager::nand2(const BDD_ID a, const BDD_ID b) {
+        if(isVariable(a) && isVariable(b))
+            node_label += "nand(" + unique_table[a].getLabel() + "," +unique_table[b].getLabel()+ ")";
         return ite(ite(a, b, 0), 0, 1);
     }
 
     BDD_ID Manager::nor2(const BDD_ID a, const BDD_ID b) {
+        if(isVariable(a) && isVariable(b))
+            node_label += "nor(" + unique_table[a].getLabel() + "," +unique_table[b].getLabel()+ ")";
         return ite(ite(a, 1, b), 0, 1);
     }
 
@@ -188,10 +194,12 @@ namespace ClassProject {
         if (search_result != -1) {
             return search_result;
         }
+        if (unique_table[node_id].getLabel() == "f" && node_label[0] != '!') unique_table[node_id].setLabel("");
         node_id++;
-        std::string node = std::to_string(node_id);
-        hashCode.setLabel(node);
+        if (node_label == "") node_label += "f";
         unique_table[node_id] = HashCode(hashCode);
+        unique_table[node_id].setLabel(node_label);
+        node_label="";
         return node_id;
     }
 
@@ -227,15 +235,28 @@ namespace ClassProject {
     }
 
     void Manager::printUniqueTable() {
-
+        std::string adjustPrintinglabel= "";
         for (std::pair<BDD_ID, HashCode> element : unique_table) {
-            std::cout << element.first
-                      << "\t" << element.second.getLabel()
-                      << "\t" << element.second.getHigh()
-                      << "\t" << element.second.getLow()
-                      << "\t" << element.second.getTopVar()
-                      << "\t" << getTopVarName(element.second.getTopVar())
-                      << "\n";
+            adjustPrintinglabel = element.second.getLabel();;
+            std::cout << element.first;
+            if (adjustPrintinglabel.size() > 7 ) {
+                std::cout << "\t" << element.second.getLabel();
+                std::cout << "\t" << element.second.getHigh();
+            }
+           if (adjustPrintinglabel.size() == 7){
+                std::cout << "\t" << element.second.getLabel();
+                std::cout << "\t\t" << element.second.getHigh();
+            }
+           if (adjustPrintinglabel.size() < 3 ){
+                std::cout << "\t\t" << element.second.getLabel();
+                std::cout << "\t\t" << element.second.getHigh();
+            }
+//                    << "\t\t\t" << element.second.getLabel()
+//                    << "\t\t\t" << element.second.getHigh()
+            std::cout     << "\t\t\t" << element.second.getLow()
+                    << "\t\t\t" << element.second.getTopVar()
+                    << "\t\t\t" << getTopVarName(element.second.getTopVar())
+                    << "\n";
         }
     }
 
