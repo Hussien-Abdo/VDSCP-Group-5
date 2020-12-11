@@ -238,24 +238,24 @@ namespace ClassProject {
         std::string adjustPrintinglabel= "";
         for (std::pair<BDD_ID, HashCode> element : unique_table) {
             adjustPrintinglabel = element.second.getLabel();;
-            std::cout << element.first
-//            if (adjustPrintinglabel.size() > 7 ) {
-//                std::cout << "\t" << element.second.getLabel();
-//                std::cout << "\t" << element.second.getHigh();
-//            }
-//           if (adjustPrintinglabel.size() == 7){
-//                std::cout << "\t" << element.second.getLabel();
-//                std::cout << "\t\t" << element.second.getHigh();
-//            }
-//           if (adjustPrintinglabel.size() < 3 ){
-//                std::cout << "\t\t" << element.second.getLabel();
-//                std::cout << "\t\t" << element.second.getHigh();
-//            }
-                    << "\t\t\t" << element.second.getLabel()
-                    << "\t\t\t" << element.second.getHigh()
-                    << "\t\t\t" << element.second.getLow()
-                    << "\t\t\t" << element.second.getTopVar()
-                    << "\t\t\t" << getTopVarName(element.second.getTopVar())
+            std::cout << element.first;
+            if (adjustPrintinglabel.size() > 7 ) {
+                std::cout << "\t\t\t\t" << element.second.getLabel();
+                std::cout << "\t\t" << element.second.getHigh();
+            }
+           if (adjustPrintinglabel.size() == 7){
+                std::cout << "\t\t\t\t" << element.second.getLabel();
+                std::cout << "\t\t\t" << element.second.getHigh();
+            }
+           if (adjustPrintinglabel.size() < 3 ){
+                std::cout << "\t\t\t\t" << element.second.getLabel();
+                std::cout << "\t\t\t\t" << element.second.getHigh();
+            }
+//                    << "\t\t\t" << element.second.getLabel()
+//                    << "\t\t\t" << element.second.getHigh()
+            std::cout     << "\t\t\t\t" << element.second.getLow()
+                    << "\t\t\t\t" << element.second.getTopVar()
+                    << "\t\t\t\t" << getTopVarName(element.second.getTopVar())
                     << "\n";
         }
     }
