@@ -78,6 +78,8 @@ namespace ClassProject {
         BDD_ID getHighestVar(std::set<BDD_ID> varsSet);
 
         void printUniqueTable();
+
+        BDD_ID &FindOrAddToUniqueTable(HashCode &hashCode);
     };
 
 }

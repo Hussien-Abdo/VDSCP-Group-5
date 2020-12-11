@@ -85,6 +85,9 @@ namespace {
         BDD_ID and2 = m.and2(var3, var4);
         m.and2(or2, and2);
         m.printUniqueTable();
+        std::cout << "uniqueTable after using neg()" << "\n";
+        m.neg(m.neg(m.and2(or2, and2)));
+        m.printUniqueTable();
     }
 
     TEST_F(ManagerTest, coFactorTrue) {
@@ -104,14 +107,30 @@ namespace {
     }
     TEST_F(ManagerTest, negTest){
         SetUp(1);
-        m.neg(var1);
+        m.neg(m.neg(m.neg(var1)));
         m.printUniqueTable();
+        EXPECT_FALSE(m.neg(m.True()));
+        EXPECT_TRUE(m.neg(m.False()));
     }
     TEST_F(ManagerTest, nand2Test){
-        EXPECT_EQ(m.nand2(m.False(),m.False()),1);
-        EXPECT_EQ(m.nand2(m.False(),m.True()),0);
-        EXPECT_EQ(m.nand2(m.True(),m.False()),0);
-        EXPECT_EQ(m.nand2(m.True(),m.True()),0);
+        EXPECT_TRUE(m.nand2(m.False(),m.False()));
+        EXPECT_TRUE(m.nand2(m.False(),m.True()));
+        EXPECT_TRUE(m.nand2(m.True(),m.False()));
+        EXPECT_FALSE(m.nand2(m.True(),m.True()));
+        m.printUniqueTable();
+    }
+    TEST_F(ManagerTest, nor2Test){
+        EXPECT_TRUE(m.nor2(m.False(),m.False()));
+        EXPECT_FALSE(m.nor2(m.False(),m.True()));
+        EXPECT_FALSE(m.nor2(m.True(),m.False()));
+        EXPECT_FALSE(m.nor2(m.True(),m.True()));
+        m.printUniqueTable();
+    }
+    TEST_F(ManagerTest, xor2Test){
+        EXPECT_FALSE(m.xor2(m.False(),m.False()));
+        EXPECT_TRUE(m.xor2(m.False(),m.True()));
+        EXPECT_TRUE(m.xor2(m.True(),m.False()));
+        EXPECT_FALSE(m.xor2(m.True(),m.True()));
         m.printUniqueTable();
     }
 }
