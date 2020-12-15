@@ -20,6 +20,7 @@ namespace ClassProject {
 
     private:
         BDD_ID node_id;
+        std::string node_label;
         BDD_ID search_result;
         std::unordered_map<BDD_ID, HashCode> unique_table;
         std::vector<std::array<BDD_ID,4>> computed_table;
@@ -78,6 +79,8 @@ namespace ClassProject {
         BDD_ID getHighestVar(std::set<BDD_ID> varsSet);
 
         void printUniqueTable();
+
+        BDD_ID &FindOrAddToUniqueTable(HashCode &hashCode);
     };
 
 }

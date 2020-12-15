@@ -60,8 +60,8 @@ namespace {
         EXPECT_EQ(m.ite(0, var2, var1), var1);
         EXPECT_EQ(m.ite(var1, 1, 0), var1);
         EXPECT_EQ(m.ite(var2, var1, var1), var1);
+        EXPECT_EQ(m.ite(var1,0,1), m.neg(var1));
         m.printUniqueTable();
-        //EXPECT_EQ(m.ite(var1,0,1), neg(var1));
     }
 
     TEST_F(ManagerTest, ITE_Basic_And2) {
@@ -84,6 +84,10 @@ namespace {
         BDD_ID or2 = m.or2(var1, var2);
         BDD_ID and2 = m.and2(var3, var4);
         m.and2(or2, and2);
+        std::cout << "**************************** f = and(or(a,b),and(c,d)) ****************************\n";
+        m.printUniqueTable();
+        std::cout << "************************** f = neg(and(or(a,b),and(c,d))) **************************\n";
+        m.neg(m.and2(or2, and2));
         m.printUniqueTable();
     }
 
@@ -104,14 +108,48 @@ namespace {
     }
     TEST_F(ManagerTest, negTest){
         SetUp(1);
-        m.neg(var1);
+        m.neg(m.neg(m.neg(var1)));
         m.printUniqueTable();
+        EXPECT_FALSE(m.neg(m.True()));
+        EXPECT_TRUE(m.neg(m.False()));
     }
     TEST_F(ManagerTest, nand2Test){
-        EXPECT_EQ(m.nand2(m.False(),m.False()),1);
-        EXPECT_EQ(m.nand2(m.False(),m.True()),0);
-        EXPECT_EQ(m.nand2(m.True(),m.False()),0);
-        EXPECT_EQ(m.nand2(m.True(),m.True()),0);
+        EXPECT_TRUE(m.nand2(m.False(),m.False()));
+        EXPECT_TRUE(m.nand2(m.False(),m.True()));
+        EXPECT_TRUE(m.nand2(m.True(),m.False()));
+        EXPECT_FALSE(m.nand2(m.True(),m.True()));
         m.printUniqueTable();
+    }
+    TEST_F(ManagerTest, nor2Test){
+        EXPECT_TRUE(m.nor2(m.False(),m.False()));
+        EXPECT_FALSE(m.nor2(m.False(),m.True()));
+        EXPECT_FALSE(m.nor2(m.True(),m.False()));
+        EXPECT_FALSE(m.nor2(m.True(),m.True()));
+        m.printUniqueTable();
+    }
+    TEST_F(ManagerTest, xor2Test){
+        EXPECT_FALSE(m.xor2(m.False(),m.False()));
+        EXPECT_TRUE(m.xor2(m.False(),m.True()));
+        EXPECT_TRUE(m.xor2(m.True(),m.False()));
+        EXPECT_FALSE(m.xor2(m.True(),m.True()));
+        m.printUniqueTable();
+    }
+    TEST_F(ManagerTest, findNodesTest){
+        SetUp(4);
+        std::set<BDD_ID> nodes_of_root;
+        BDD_ID or2 = m.or2(var1, var2);
+        BDD_ID and2 = m.and2(var3, var4);
+        BDD_ID f = m.and2(or2, and2);
+        m.findNodes(f,nodes_of_root);
+        EXPECT_EQ(nodes_of_root.size(),4);
+    }
+    TEST_F(ManagerTest, findVarsTest){
+        SetUp(4);
+        std::set<BDD_ID> vars_of_root;
+        BDD_ID or2 = m.or2(var1, var2);
+        BDD_ID and2 = m.and2(var3, var4);
+        BDD_ID f = m.and2(or2, and2);
+        m.findVars(f,vars_of_root);
+        EXPECT_EQ(vars_of_root.size(),4);
     }
 }
