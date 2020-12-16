@@ -63,7 +63,7 @@ namespace {
         EXPECT_EQ(m.ite(var1,0,1), m.neg(var1));
         m.printUniqueTable();
     }
-
+// REAl tree & constants
     TEST_F(ManagerTest, ITE_Basic_And2) {
         EXPECT_EQ(m.and2(m.True(), m.False()), 0);
         EXPECT_EQ(m.and2(m.True(), m.True()), 1);
@@ -78,7 +78,7 @@ namespace {
         EXPECT_EQ(m.or2(m.False(), m.True()), 1);
 
     }
-
+// tdo real test :)
     TEST_F(ManagerTest, ITE_Function) {
         SetUp(4);
         BDD_ID or2 = m.or2(var1, var2);
