@@ -140,13 +140,13 @@ namespace ClassProject {
     BDD_ID Manager::nand2(const BDD_ID a, const BDD_ID b) {
         if (isVariable(a) && isVariable(b))
             node_label += "nand(" + unique_table[a].getLabel() + "," + unique_table[b].getLabel() + ")";
-        return ite(ite(a, b, 0), 0, 1);
+        return ite(a, neg(b), 1);
     }
 
     BDD_ID Manager::nor2(const BDD_ID a, const BDD_ID b) {
         if (isVariable(a) && isVariable(b))
             node_label += "nor(" + unique_table[a].getLabel() + "," + unique_table[b].getLabel() + ")";
-        return ite(ite(a, 1, b), 0, 1);
+        return ite(a,0, neg(b));
     }
 
     std::string Manager::getTopVarName(const BDD_ID &root) {
@@ -165,8 +165,8 @@ namespace ClassProject {
     void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root) {
         if (!isConstant(root)) {
             vars_of_root.insert(topVar(root));
-            findNodes(unique_table[root].getHigh(), vars_of_root);
-            findNodes(unique_table[root].getLow(), vars_of_root);
+            findVars(unique_table[root].getHigh(), vars_of_root);
+            findVars(unique_table[root].getLow(), vars_of_root);
         }
     }
 
