@@ -1,4 +1,0 @@
-var searchData=
-[
-  ['printuniquetable_80',['printUniqueTable',['../classClassProject_1_1Manager.html#a0eeab9d42e145bf9bfa345d2d247d9b1',1,'ClassProject::Manager']]]
-];
