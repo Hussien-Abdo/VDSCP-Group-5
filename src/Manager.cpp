@@ -310,8 +310,8 @@ namespace ClassProject {
      * @param nodes_of_root set of BDD_ID to store the result into
      */
     void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) {
+        nodes_of_root.insert(root);
         if (!isConstant(root)) {
-            nodes_of_root.insert(root);
             findNodes(unique_table[root].getHigh(), nodes_of_root);
             findNodes(unique_table[root].getLow(), nodes_of_root);
         }

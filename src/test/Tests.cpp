@@ -226,7 +226,7 @@ namespace {
         BDD_ID and2 = m.and2(var3, var4);
         BDD_ID f = m.and2(or2, and2);
         m.findNodes(f,nodes_of_root);
-        std::set<BDD_ID> nodes_of_root_expected{9,7,8,5};
+        std::set<BDD_ID> nodes_of_root_expected{0,1,9,7,8,5};
         EXPECT_EQ(nodes_of_root.size(),nodes_of_root_expected.size());
         EXPECT_EQ(nodes_of_root,nodes_of_root_expected);
     }
