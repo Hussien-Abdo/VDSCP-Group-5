@@ -36,8 +36,7 @@ namespace ClassProject {
      * @return BDD_ID of the True node
      */
     const BDD_ID &Manager::True() {
-        search_result = 1;
-        return search_result;
+        return trueNode;
     }
 
     /**
@@ -45,8 +44,7 @@ namespace ClassProject {
      * @return BDD_ID of the False node
      */
     const BDD_ID &Manager::False() {
-        search_result = 0;
-        return search_result;
+        return falseNode;
     }
 
     /**

@@ -129,39 +129,39 @@ namespace {
     }
 
     TEST_F(ManagerTest, ITE_Basic_And2) {
-        EXPECT_EQ(m.and2(m.True(), m.False()), 0);
-        EXPECT_EQ(m.and2(m.True(), m.True()), 1);
-        EXPECT_EQ(m.and2(m.False(), m.False()), 0);
-        EXPECT_EQ(m.and2(m.False(), m.True()), 0);
+        EXPECT_EQ(m.and2(m.True(), m.False()), m.False());
+        EXPECT_EQ(m.and2(m.True(), m.True()), m.True());
+        EXPECT_EQ(m.and2(m.False(), m.False()), m.False());
+        EXPECT_EQ(m.and2(m.False(), m.True()), m.False());
     }
 
     TEST_F(ManagerTest, ITE_Basic_Or2) {
-        EXPECT_EQ(m.or2(m.True(), m.False()), 1);
-        EXPECT_EQ(m.or2(m.True(), m.True()), 1);
-        EXPECT_EQ(m.or2(m.False(), m.False()), 0);
-        EXPECT_EQ(m.or2(m.False(), m.True()), 1);
+        EXPECT_EQ(m.or2(m.True(), m.False()), m.True());
+        EXPECT_EQ(m.or2(m.True(), m.True()), m.True());
+        EXPECT_EQ(m.or2(m.False(), m.False()), m.False());
+        EXPECT_EQ(m.or2(m.False(), m.True()), m.True());
 
     }
 
     TEST_F(ManagerTest, ITE_Basic_xor2){
-        EXPECT_FALSE(m.xor2(m.False(),m.False()));
-        EXPECT_TRUE(m.xor2(m.False(),m.True()));
-        EXPECT_TRUE(m.xor2(m.True(),m.False()));
-        EXPECT_FALSE(m.xor2(m.True(),m.True()));
+        EXPECT_EQ(m.xor2(m.False(),m.False()),m.False());
+        EXPECT_EQ(m.xor2(m.False(),m.True()),m.True());
+        EXPECT_EQ(m.xor2(m.True(),m.False()),m.True());
+        EXPECT_EQ(m.xor2(m.True(),m.True()),m.False());
     }
 
     TEST_F(ManagerTest, ITE_Basic_nand2){
-        EXPECT_TRUE(m.nand2(m.False(),m.False()));
-        EXPECT_TRUE(m.nand2(m.False(),m.True()));
-        EXPECT_TRUE(m.nand2(m.True(),m.False()));
-        EXPECT_FALSE(m.nand2(m.True(),m.True()));
+        EXPECT_EQ(m.nand2(m.False(),m.False()),m.True());
+        EXPECT_EQ(m.nand2(m.False(),m.True()),m.True());
+        EXPECT_EQ(m.nand2(m.True(),m.False()),m.True());
+        EXPECT_EQ(m.nand2(m.True(),m.True()),m.False());
     }
 
     TEST_F(ManagerTest, ITE_Basic_nor2){
-        EXPECT_TRUE(m.nor2(m.False(),m.False()));
-        EXPECT_FALSE(m.nor2(m.False(),m.True()));
-        EXPECT_FALSE(m.nor2(m.True(),m.False()));
-        EXPECT_FALSE(m.nor2(m.True(),m.True()));
+        EXPECT_EQ(m.nor2(m.False(),m.False()),m.True());
+        EXPECT_EQ(m.nor2(m.False(),m.True()),m.False());
+        EXPECT_EQ(m.nor2(m.True(),m.False()),m.False());
+        EXPECT_EQ(m.nor2(m.True(),m.True()),m.False());
     }
 
 ////Basic gates, tests for variable inputs

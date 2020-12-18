@@ -30,6 +30,8 @@ namespace ClassProject {
         BDD_ID search_result; /**< Used to store the return values for some functions, to return by reference */
         std::unordered_map<BDD_ID, HashCode> unique_table; /**< unordered_map that represents the ROBDD */
         std::vector<std::array<BDD_ID, 4>> computed_table; /**< Table to store the result of each ite(i,t,e) call */
+        BDD_ID trueNode=1;
+        BDD_ID falseNode=0;
 
     public:
 
