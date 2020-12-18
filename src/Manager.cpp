@@ -196,7 +196,7 @@ namespace ClassProject {
         }
         if (unique_table[node_id].getLabel() == "f" && node_label[0] != '!') unique_table[node_id].setLabel("");
         node_id++;
-        if (node_label == "") node_label += "f";
+        if (node_label.empty()) node_label += "f";
         unique_table[node_id] = HashCode(hashCode);
         unique_table[node_id].setLabel(node_label);
         node_label = "";

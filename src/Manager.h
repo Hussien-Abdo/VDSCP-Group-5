@@ -1,11 +1,12 @@
 // A minimalistic BDD library, following Wolfgang Kunz lecture slides
 //
 // Written by Markus Wedler 2014
-
+/** \file Manager.h
+ * Header file for Manager class.
+ */
 #ifndef mwBDD_H
 #define mwBDD_H
 
-#include <cassert>
 #include <iostream>
 #include <list>
 #include <vector>
@@ -14,16 +15,23 @@
 #include <string>
 #include "ManagerInterface.h"
 #include "HashCode.h"
-
+/**
+ * Main namespace, contains Manager.cpp class
+ */
 namespace ClassProject {
+/**
+ * The Manager class is the main class in this package. It implements ManagerInterface.
+ * It contains all BDD package functions. In addition it implements the ROBDD as an unordered_map.
+ * The order of the variables -priority- is the insertion order.
+ */
     class Manager : public ManagerInterface {
 
     private:
-        BDD_ID node_id;
-        std::string node_label;
-        BDD_ID search_result;
-        std::unordered_map<BDD_ID, HashCode> unique_table;
-        std::vector<std::array<BDD_ID, 4>> computed_table;
+        BDD_ID node_id; /**< BDD_ID counter, keeps track of last used BDD_ID */
+        std::string node_label; /**<  Internal string used to create label for nodes that represent a function */
+        BDD_ID search_result; /**< Used to store the return values for some functions, to return by reference */
+        std::unordered_map<BDD_ID, HashCode> unique_table; /**< unordered_map that represents the ROBDD */
+        std::vector<std::array<BDD_ID, 4>> computed_table; /**< Table to store the result of each ite(i,t,e) call */
 
     public:
         /**
@@ -85,13 +93,43 @@ namespace ClassProject {
          * @return
          */
         BDD_ID ite(const BDD_ID i, const BDD_ID t, const BDD_ID e);
-
+        /**
+         * Returns positive cofactor of function f with respect to x
+         *
+         * Returns the result of substituting x equal to 1 in f as a BDD_ID
+         * f = a + (b ∗ c)
+         * coFactorTrue(f, c) = a + b
+         * @param f Function to coFactor
+         * @param x Variable or function to coFactor with respect to
+         * @return BDD_ID representing the result of the coFactoring
+         */
         BDD_ID coFactorTrue(const BDD_ID f, BDD_ID x);
-
+        /**
+         * Returns negative cofactor of function f with respect to x
+         *
+         * Returns the result of substituting x equal to 0 in f as a BDD_ID
+         * f = a + (b ∗ c)
+         * coFactorFalse(f, c) = a
+         * @param f Function to coFactor
+         * @param x Variable or function to coFactor with respect to
+         * @return BDD_ID representing the result of the coFactoring
+         */
         BDD_ID coFactorFalse(const BDD_ID f, BDD_ID x);
-
+        /**
+         * Returns the positive cofactor of function f with respect to the highest variable
+         *
+         * Returns the positive cofactor of function f with respect to the highest order variable in function f
+         * @param f Function to coFactor
+         * @return BDD_ID representing the result of the coFactoring
+         */
         BDD_ID coFactorTrue(const BDD_ID f);
-
+        /**
+         * Returns the negative cofactor of function f with respect to the highest variable
+         *
+         * Returns the negative cofactor of function f with respect to the highest order variable in function f
+         * @param f Function to coFactor
+         * @return BDD_ID representing the result of the coFactoring
+         */
         BDD_ID coFactorFalse(const BDD_ID f);
 
         /**
@@ -154,13 +192,22 @@ namespace ClassProject {
         /**
          * Returns the name -label- of the topVar of node root
          *
-         * @param root
+         * @param root Node to get its topVar
          * @return name of topVar as string
          */
         std::string getTopVarName(const BDD_ID &root);
-
+        /**
+         *
+         * @param root
+         * @param nodes_of_root
+         */
         void findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root);
-
+        /**
+         * Returns the set of nodes reachable from the given BDD_ID -root- including the node itself
+         *
+         * @param root Node to get its successors
+         * @param vars_of_root set of BDD_ID to store the result into
+         */
         void findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root);
 
         /**
@@ -177,9 +224,23 @@ namespace ClassProject {
          * @return BDD_ID if it's found, -1 otherwise.
          */
         BDD_ID &searchUniqueTable(const HashCode &hashCode);
-
+        /**
+         *  Returns the HashCode-unique tuple- associated with the given BDD_ID
+         * @param id BDD_ID to get its HashCode-unique tuple-
+         * @return HashCode associated with the given BDD_ID
+         */
         HashCode getHashCode(BDD_ID id);
-
+        /**
+         *  Searches the computedTable for a result of a previously computed ite(i,t,e) operation, Returns -1 if it's not found
+         *
+         *  Takes as input the parameters of the ite(i,t,e) function, and iterates the computed table looking
+         *  for the result of the given parameters -HashCode "Unique tuple"-.
+         *  If found returns the BDD_ID of the result of the operation from the UniqueTable, returns -1 otherwise.
+         * @param i First parameter of ite(i,t,e)
+         * @param t Second parameter of ite(i,t,e)
+         * @param e Third parameter of ite(i,t,e)
+         * @return BDD_ID of the result in the UniqueTable
+         */
         BDD_ID searchComputedTable(BDD_ID i, BDD_ID t, BDD_ID e);
 
         /** Takes set of vars and returns the highest priority
@@ -189,9 +250,15 @@ namespace ClassProject {
          * @return The variable with the highest priority
          */
         BDD_ID getHighestVar(std::set<BDD_ID> varsSet);
-
+        /**
+         *Prints the Uniqetable
+         */
         void printUniqueTable();
-
+        /**
+         * Adds a HashCode to the UniqueTable or returns its ID if it already exists
+         * @param hashCode to add or return its BDD_ID
+         * @return The BDD_ID associated with the HashCode
+         */
         BDD_ID &FindOrAddToUniqueTable(HashCode &hashCode);
     };
 
