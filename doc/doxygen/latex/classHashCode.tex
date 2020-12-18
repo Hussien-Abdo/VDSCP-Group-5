@@ -1,0 +1,197 @@
+\hypertarget{classHashCode}{}\doxysection{Hash\+Code Class Reference}
+\label{classHashCode}\index{HashCode@{HashCode}}
+
+
+{\ttfamily \#include $<$Hash\+Code.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classHashCode_ae865767c89f79e0e0806f21f0a5b3939}{Hash\+Code}} ()
+\item 
+\mbox{\hyperlink{classHashCode_ab2ca583066d4d3e7611084e44a3f2fbe}{Hash\+Code}} (const std\+::string \&label, BDD\+\_\+\+ID high, BDD\+\_\+\+ID low, BDD\+\_\+\+ID top\+Var)
+\item 
+\mbox{\hyperlink{classHashCode_aa4153f9d1802cdc83b699786345f27ae}{Hash\+Code}} (const std\+::string \&label)
+\item 
+const std\+::string \& \mbox{\hyperlink{classHashCode_a6f41d4486f056098ed2c58b6aac1a3a8}{get\+Label}} () const
+\item 
+void \mbox{\hyperlink{classHashCode_ae85523d6fd7d2a1f28b0b4901eb99a37}{set\+Label}} (const std\+::string \&label)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classHashCode_ae85c5afb84124b55dae43a4fb09210d5}{get\+High}} () const
+\item 
+void \mbox{\hyperlink{classHashCode_a53ad3f5ac1a348a1148701c91f060319}{set\+High}} (BDD\+\_\+\+ID high)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classHashCode_a01452d03d58bf626ce84d7d7459d7174}{get\+Low}} () const
+\item 
+void \mbox{\hyperlink{classHashCode_a08065f37d8ddce051edfe548a39f63b9}{set\+Low}} (BDD\+\_\+\+ID low)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classHashCode_aa5516e2690d985fb74cd94c80c62803c}{get\+Top\+Var}} () const
+\item 
+void \mbox{\hyperlink{classHashCode_a1d558ff204df187c153cf35e1e44f048}{set\+Top\+Var}} (BDD\+\_\+\+ID top\+Var)
+\item 
+bool \mbox{\hyperlink{classHashCode_a66f9d7c7e5a8d4e3ef194569c0825ee8}{operator==}} (const \mbox{\hyperlink{classHashCode}{Hash\+Code}} \&other) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHashCode_ac12bfeb8a0d3ba9b52478079502025e5}\label{classHashCode_ac12bfeb8a0d3ba9b52478079502025e5}} 
+std\+::string {\bfseries Label}
+\item 
+\mbox{\Hypertarget{classHashCode_afaf11ab4272288d8f49c4b62aeb4af1a}\label{classHashCode_afaf11ab4272288d8f49c4b62aeb4af1a}} 
+BDD\+\_\+\+ID {\bfseries High}
+\item 
+\mbox{\Hypertarget{classHashCode_a7cb7d2e58461ef094e95050f194435df}\label{classHashCode_a7cb7d2e58461ef094e95050f194435df}} 
+BDD\+\_\+\+ID {\bfseries Low}
+\item 
+\mbox{\Hypertarget{classHashCode_a93e1502fbf0237abc5204f11a72ad07d}\label{classHashCode_a93e1502fbf0237abc5204f11a72ad07d}} 
+BDD\+\_\+\+ID {\bfseries Top\+\_\+\+Var}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classHashCode}{Hash\+Code}} class is used to represent the Unique tuple which stores the data of each node in the ROBDD. Data include\+:
+\begin{DoxyItemize}
+\item Human readable label
+\item High successor of the node
+\item Low successor of the node
+\item Top\+\_\+var of the node 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHashCode_ae865767c89f79e0e0806f21f0a5b3939}\label{classHashCode_ae865767c89f79e0e0806f21f0a5b3939}} 
+\index{HashCode@{HashCode}!HashCode@{HashCode}}
+\index{HashCode@{HashCode}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{HashCode()}{HashCode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Hash\+Code\+::\+Hash\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+zero argument constructor \mbox{\Hypertarget{classHashCode_ab2ca583066d4d3e7611084e44a3f2fbe}\label{classHashCode_ab2ca583066d4d3e7611084e44a3f2fbe}} 
+\index{HashCode@{HashCode}!HashCode@{HashCode}}
+\index{HashCode@{HashCode}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{HashCode()}{HashCode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Hash\+Code\+::\+Hash\+Code (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{label,  }\item[{BDD\+\_\+\+ID}]{high,  }\item[{BDD\+\_\+\+ID}]{low,  }\item[{BDD\+\_\+\+ID}]{top\+Var }\end{DoxyParamCaption})}
+
+Full argument constructor 
+\begin{DoxyParams}{Parameters}
+{\em label} & Human readable label \\
+\hline
+{\em high} & High successor of the node \\
+\hline
+{\em low} & Low successor of the node \\
+\hline
+{\em top\+Var} & Top\+\_\+var of the node \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHashCode_aa4153f9d1802cdc83b699786345f27ae}\label{classHashCode_aa4153f9d1802cdc83b699786345f27ae}} 
+\index{HashCode@{HashCode}!HashCode@{HashCode}}
+\index{HashCode@{HashCode}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{HashCode()}{HashCode()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Hash\+Code\+::\+Hash\+Code (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{label }\end{DoxyParamCaption})}
+
+Label only constructor 
+\begin{DoxyParams}{Parameters}
+{\em label} & Human readable label \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHashCode_ae85c5afb84124b55dae43a4fb09210d5}\label{classHashCode_ae85c5afb84124b55dae43a4fb09210d5}} 
+\index{HashCode@{HashCode}!getHigh@{getHigh}}
+\index{getHigh@{getHigh}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{getHigh()}{getHigh()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Hash\+Code\+::get\+High (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the BDD\+\_\+\+ID of the high successor \begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the high successor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHashCode_a6f41d4486f056098ed2c58b6aac1a3a8}\label{classHashCode_a6f41d4486f056098ed2c58b6aac1a3a8}} 
+\index{HashCode@{HashCode}!getLabel@{getLabel}}
+\index{getLabel@{getLabel}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{getLabel()}{getLabel()}}
+{\footnotesize\ttfamily const std\+::string \& Hash\+Code\+::get\+Label (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the label of the node represented by the \mbox{\hyperlink{classHashCode}{Hash\+Code}} \begin{DoxyReturn}{Returns}
+label of the node 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHashCode_a01452d03d58bf626ce84d7d7459d7174}\label{classHashCode_a01452d03d58bf626ce84d7d7459d7174}} 
+\index{HashCode@{HashCode}!getLow@{getLow}}
+\index{getLow@{getLow}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{getLow()}{getLow()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Hash\+Code\+::get\+Low (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the BDD\+\_\+\+ID of the low successor \begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the low successor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHashCode_aa5516e2690d985fb74cd94c80c62803c}\label{classHashCode_aa5516e2690d985fb74cd94c80c62803c}} 
+\index{HashCode@{HashCode}!getTopVar@{getTopVar}}
+\index{getTopVar@{getTopVar}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{getTopVar()}{getTopVar()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Hash\+Code\+::get\+Top\+Var (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Returns the top\+Var \begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the top\+Var 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHashCode_a66f9d7c7e5a8d4e3ef194569c0825ee8}\label{classHashCode_a66f9d7c7e5a8d4e3ef194569c0825ee8}} 
+\index{HashCode@{HashCode}!operator==@{operator==}}
+\index{operator==@{operator==}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Hash\+Code\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classHashCode}{Hash\+Code}} \&}]{other }\end{DoxyParamCaption}) const}
+
+Overloading the == operator to compare \mbox{\hyperlink{classHashCode}{Hash\+Code}} objects 
+\begin{DoxyParams}{Parameters}
+{\em other} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classHashCode_a53ad3f5ac1a348a1148701c91f060319}\label{classHashCode_a53ad3f5ac1a348a1148701c91f060319}} 
+\index{HashCode@{HashCode}!setHigh@{setHigh}}
+\index{setHigh@{setHigh}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{setHigh()}{setHigh()}}
+{\footnotesize\ttfamily void Hash\+Code\+::set\+High (\begin{DoxyParamCaption}\item[{BDD\+\_\+\+ID}]{high }\end{DoxyParamCaption})}
+
+Sets the high successor of the node 
+\begin{DoxyParams}{Parameters}
+{\em high} & BDD\+\_\+\+ID to set as high successor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHashCode_ae85523d6fd7d2a1f28b0b4901eb99a37}\label{classHashCode_ae85523d6fd7d2a1f28b0b4901eb99a37}} 
+\index{HashCode@{HashCode}!setLabel@{setLabel}}
+\index{setLabel@{setLabel}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{setLabel()}{setLabel()}}
+{\footnotesize\ttfamily void Hash\+Code\+::set\+Label (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{label }\end{DoxyParamCaption})}
+
+Sets the label of the node 
+\begin{DoxyParams}{Parameters}
+{\em label} & string to set as label \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHashCode_a08065f37d8ddce051edfe548a39f63b9}\label{classHashCode_a08065f37d8ddce051edfe548a39f63b9}} 
+\index{HashCode@{HashCode}!setLow@{setLow}}
+\index{setLow@{setLow}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{setLow()}{setLow()}}
+{\footnotesize\ttfamily void Hash\+Code\+::set\+Low (\begin{DoxyParamCaption}\item[{BDD\+\_\+\+ID}]{low }\end{DoxyParamCaption})}
+
+Sets the low successor of the node 
+\begin{DoxyParams}{Parameters}
+{\em low} & BDD\+\_\+\+ID to set as low successor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHashCode_a1d558ff204df187c153cf35e1e44f048}\label{classHashCode_a1d558ff204df187c153cf35e1e44f048}} 
+\index{HashCode@{HashCode}!setTopVar@{setTopVar}}
+\index{setTopVar@{setTopVar}!HashCode@{HashCode}}
+\doxysubsubsection{\texorpdfstring{setTopVar()}{setTopVar()}}
+{\footnotesize\ttfamily void Hash\+Code\+::set\+Top\+Var (\begin{DoxyParamCaption}\item[{BDD\+\_\+\+ID}]{top\+Var }\end{DoxyParamCaption})}
+
+Sets the top\+Var 
+\begin{DoxyParams}{Parameters}
+{\em top\+Var} & BDD\+\_\+\+ID to set as top\+Var \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/habi/\+CLion\+Projects/\+VDSCP-\/\+Group-\/5/src/\mbox{\hyperlink{HashCode_8h}{Hash\+Code.\+h}}\item 
+/home/habi/\+CLion\+Projects/\+VDSCP-\/\+Group-\/5/src/\mbox{\hyperlink{HashCode_8cpp}{Hash\+Code.\+cpp}}\end{DoxyCompactItemize}

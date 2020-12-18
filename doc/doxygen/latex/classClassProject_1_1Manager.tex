@@ -1,0 +1,635 @@
+\hypertarget{classClassProject_1_1Manager}{}\doxysection{Class\+Project\+::Manager Class Reference}
+\label{classClassProject_1_1Manager}\index{ClassProject::Manager@{ClassProject::Manager}}
+
+
+{\ttfamily \#include $<$Manager.\+h$>$}
+
+Inheritance diagram for Class\+Project\+::Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classClassProject_1_1Manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classClassProject_1_1Manager_a85fce20557dc45950ae3493d6f9f14ea}{Manager}} ()
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_a65d3295df9c77aaf00890bf2e17fa97c}{create\+Var}} (const std\+::string \&label)
+\item 
+const BDD\+\_\+\+ID \& \mbox{\hyperlink{classClassProject_1_1Manager_a5ac1bca2f7c84a6301ed6cb2cbf4e757}{True}} ()
+\item 
+const BDD\+\_\+\+ID \& \mbox{\hyperlink{classClassProject_1_1Manager_ab05b37801b21bb61b19c717c2351649d}{False}} ()
+\item 
+bool \mbox{\hyperlink{classClassProject_1_1Manager_acf11f0c3be27c62741ffe641690f4390}{is\+Constant}} (const BDD\+\_\+\+ID f)
+\item 
+bool \mbox{\hyperlink{classClassProject_1_1Manager_ac2f31be64b3f16cf481a82b035b1ebff}{is\+Variable}} (const BDD\+\_\+\+ID x)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_a3fe86d175b50f87c332d7b707ecdd93d}{top\+Var}} (const BDD\+\_\+\+ID f)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_af151414343fb0c6a55758f1f4cbe32cd}{ite}} (const BDD\+\_\+\+ID i, const BDD\+\_\+\+ID t, const BDD\+\_\+\+ID e)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_aa24f6efbfbb9bd6aea4d737526c3ddd1}{co\+Factor\+True}} (const BDD\+\_\+\+ID f, BDD\+\_\+\+ID x)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_a73734e4f9d2e32715393d3aad02582dd}{co\+Factor\+False}} (const BDD\+\_\+\+ID f, BDD\+\_\+\+ID x)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_af457cec9e7225e2d5313f5941972f22c}{co\+Factor\+True}} (const BDD\+\_\+\+ID f)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_ac069d27cde29e3ffc24a3570eff1b8b5}{co\+Factor\+False}} (const BDD\+\_\+\+ID f)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_afe90eab5bb36f8e9f5a05ee6dda5917a}{and2}} (const BDD\+\_\+\+ID a, const BDD\+\_\+\+ID b)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_ab671c259909f8761302a5fc15f848089}{or2}} (const BDD\+\_\+\+ID a, const BDD\+\_\+\+ID b)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_a30f93f17fd3ba121b93bcee877165dd6}{xor2}} (const BDD\+\_\+\+ID a, const BDD\+\_\+\+ID b)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_aa70153f3beb2aa81e5574cc129773a3a}{neg}} (const BDD\+\_\+\+ID a)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_a4fb0a1913c31a27b4bb6d52e9c5b708e}{nand2}} (const BDD\+\_\+\+ID a, const BDD\+\_\+\+ID b)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_af024ee443eb84eb26be273396514361d}{nor2}} (const BDD\+\_\+\+ID a, const BDD\+\_\+\+ID b)
+\item 
+std\+::string \mbox{\hyperlink{classClassProject_1_1Manager_a27683826998d51617712d938c427f3d2}{get\+Top\+Var\+Name}} (const BDD\+\_\+\+ID \&root)
+\item 
+void \mbox{\hyperlink{classClassProject_1_1Manager_a9da4d59bebf5bed0d0557eccee4e97e6}{find\+Nodes}} (const BDD\+\_\+\+ID \&root, std\+::set$<$ BDD\+\_\+\+ID $>$ \&nodes\+\_\+of\+\_\+root)
+\item 
+void \mbox{\hyperlink{classClassProject_1_1Manager_a3fd1dba73fd4dde4d63dc4b8c9603593}{find\+Vars}} (const BDD\+\_\+\+ID \&root, std\+::set$<$ BDD\+\_\+\+ID $>$ \&vars\+\_\+of\+\_\+root)
+\item 
+size\+\_\+t \mbox{\hyperlink{classClassProject_1_1Manager_a14df23d00c8b7d5db1498a6196b076ff}{unique\+Table\+Size}} ()
+\item 
+BDD\+\_\+\+ID \& \mbox{\hyperlink{classClassProject_1_1Manager_a6802240433293ca4fb9e4a97d288c4c5}{search\+Unique\+Table}} (const \mbox{\hyperlink{classHashCode}{Hash\+Code}} \&hash\+Code)
+\item 
+\mbox{\hyperlink{classHashCode}{Hash\+Code}} \mbox{\hyperlink{classClassProject_1_1Manager_a386f879ac4d9f04387b6e748c9c322c5}{get\+Hash\+Code}} (BDD\+\_\+\+ID id)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_a141d27e906515a1469591ede7dadeecd}{search\+Computed\+Table}} (BDD\+\_\+\+ID i, BDD\+\_\+\+ID t, BDD\+\_\+\+ID e)
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_a6aba83411e18000623a1e4974e5cc143}{get\+Highest\+Var}} (std\+::set$<$ BDD\+\_\+\+ID $>$ vars\+Set)
+\item 
+void \mbox{\hyperlink{classClassProject_1_1Manager_a0eeab9d42e145bf9bfa345d2d247d9b1}{print\+Unique\+Table}} ()
+\item 
+BDD\+\_\+\+ID \& \mbox{\hyperlink{classClassProject_1_1Manager_a60a1908c8a65399ca3c6950231c51079}{Find\+Or\+Add\+To\+Unique\+Table}} (\mbox{\hyperlink{classHashCode}{Hash\+Code}} \&hash\+Code)
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_a789ef2b659cc7bcdcc43937da3b9ab61}{node\+\_\+id}}
+\item 
+std\+::string \mbox{\hyperlink{classClassProject_1_1Manager_ac6fb70b28def9495894a280b47c4210e}{node\+\_\+label}}
+\item 
+BDD\+\_\+\+ID \mbox{\hyperlink{classClassProject_1_1Manager_a529950fb1807141c5bd2b72d5dd309cd}{search\+\_\+result}}
+\item 
+std\+::unordered\+\_\+map$<$ BDD\+\_\+\+ID, \mbox{\hyperlink{classHashCode}{Hash\+Code}} $>$ \mbox{\hyperlink{classClassProject_1_1Manager_a526dcdd50dced7f982b915c4e30011bb}{unique\+\_\+table}}
+\item 
+std\+::vector$<$ std\+::array$<$ BDD\+\_\+\+ID, 4 $>$ $>$ \mbox{\hyperlink{classClassProject_1_1Manager_a7fd592327d6c28469905fbd06de818d7}{computed\+\_\+table}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classClassProject_1_1Manager}{Manager}} class is the main class in this package. It implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Manager\+Interface}}. It contains all BDD package functions. In addition it implements the ROBDD as an unordered\+\_\+map. The order of the variables -\/priority-\/ is the insertion order. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classClassProject_1_1Manager_a85fce20557dc45950ae3493d6f9f14ea}\label{classClassProject_1_1Manager_a85fce20557dc45950ae3493d6f9f14ea}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!Manager@{Manager}}
+\index{Manager@{Manager}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{Manager()}{Manager()}}
+{\footnotesize\ttfamily Class\+Project\+::\+Manager\+::\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+A no argument constructor for class manager 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classClassProject_1_1Manager_afe90eab5bb36f8e9f5a05ee6dda5917a}\label{classClassProject_1_1Manager_afe90eab5bb36f8e9f5a05ee6dda5917a}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!and2@{and2}}
+\index{and2@{and2}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{and2()}{and2()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::and2 (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{a,  }\item[{const BDD\+\_\+\+ID}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Performs logical AND operation on a \& b
+
+Performs logical AND using ite(a, b, 0) and returns BDD\+\_\+\+ID of the node representing the result of the operation 
+\begin{DoxyParams}{Parameters}
+{\em a} & First node \\
+\hline
+{\em b} & Second node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the result 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_ac069d27cde29e3ffc24a3570eff1b8b5}\label{classClassProject_1_1Manager_ac069d27cde29e3ffc24a3570eff1b8b5}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!coFactorFalse@{coFactorFalse}}
+\index{coFactorFalse@{coFactorFalse}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{coFactorFalse()}{coFactorFalse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::co\+Factor\+False (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the negative cofactor of function f with respect to the highest variable
+
+Returns the negative cofactor of function f with respect to the highest order variable in function f 
+\begin{DoxyParams}{Parameters}
+{\em f} & Function to co\+Factor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID representing the result of the co\+Factoring 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_a73734e4f9d2e32715393d3aad02582dd}\label{classClassProject_1_1Manager_a73734e4f9d2e32715393d3aad02582dd}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!coFactorFalse@{coFactorFalse}}
+\index{coFactorFalse@{coFactorFalse}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{coFactorFalse()}{coFactorFalse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::co\+Factor\+False (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{f,  }\item[{BDD\+\_\+\+ID}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns negative cofactor of function f with respect to x
+
+Returns the result of substituting x equal to 0 in f as a BDD\+\_\+\+ID f = a + (b ∗ c) co\+Factor\+False(f, c) = a Terminal cases\+: f or x are constants top\+Var(f) $>$ x 
+\begin{DoxyParams}{Parameters}
+{\em f} & Function to co\+Factor \\
+\hline
+{\em x} & Variable or function to co\+Factor with respect to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID representing the result of the co\+Factoring 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_af457cec9e7225e2d5313f5941972f22c}\label{classClassProject_1_1Manager_af457cec9e7225e2d5313f5941972f22c}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!coFactorTrue@{coFactorTrue}}
+\index{coFactorTrue@{coFactorTrue}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{coFactorTrue()}{coFactorTrue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::co\+Factor\+True (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the positive cofactor of function f with respect to the highest variable
+
+Returns the positive cofactor of function f with respect to the highest order variable in function f 
+\begin{DoxyParams}{Parameters}
+{\em f} & Function to co\+Factor \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID representing the result of the co\+Factoring 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_aa24f6efbfbb9bd6aea4d737526c3ddd1}\label{classClassProject_1_1Manager_aa24f6efbfbb9bd6aea4d737526c3ddd1}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!coFactorTrue@{coFactorTrue}}
+\index{coFactorTrue@{coFactorTrue}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{coFactorTrue()}{coFactorTrue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::co\+Factor\+True (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{f,  }\item[{BDD\+\_\+\+ID}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns positive cofactor of function f with respect to x
+
+Returns the result of substituting x equal to 1 in f as a BDD\+\_\+\+ID f = a + (b ∗ c) co\+Factor\+True(f, c) = a + b Terminal cases\+: f or x are constants top\+Var(f) $>$ x 
+\begin{DoxyParams}{Parameters}
+{\em f} & Function to co\+Factor \\
+\hline
+{\em x} & Variable or function to co\+Factor with respect to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID representing the result of the co\+Factoring 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_a65d3295df9c77aaf00890bf2e17fa97c}\label{classClassProject_1_1Manager_a65d3295df9c77aaf00890bf2e17fa97c}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!createVar@{createVar}}
+\index{createVar@{createVar}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{createVar()}{createVar()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::create\+Var (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{label }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Creates a variable with the specified label
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & to create var for it \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_ab05b37801b21bb61b19c717c2351649d}\label{classClassProject_1_1Manager_ab05b37801b21bb61b19c717c2351649d}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!False@{False}}
+\index{False@{False}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{False()}{False()}}
+{\footnotesize\ttfamily const BDD\+\_\+\+ID \& Class\+Project\+::\+Manager\+::\+False (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the BDD\+\_\+\+ID of the False node i.\+e 0 \begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the False node 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_a9da4d59bebf5bed0d0557eccee4e97e6}\label{classClassProject_1_1Manager_a9da4d59bebf5bed0d0557eccee4e97e6}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!findNodes@{findNodes}}
+\index{findNodes@{findNodes}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{findNodes()}{findNodes()}}
+{\footnotesize\ttfamily void Class\+Project\+::\+Manager\+::find\+Nodes (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID \&}]{root,  }\item[{std\+::set$<$ BDD\+\_\+\+ID $>$ \&}]{nodes\+\_\+of\+\_\+root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the set of nodes reachable from the given BDD\+\_\+\+ID -\/root-\/ including the node itself 
+\begin{DoxyParams}{Parameters}
+{\em root} & Node to get its successors \\
+\hline
+{\em nodes\+\_\+of\+\_\+root} & set of BDD\+\_\+\+ID to store the result into \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_a60a1908c8a65399ca3c6950231c51079}\label{classClassProject_1_1Manager_a60a1908c8a65399ca3c6950231c51079}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!FindOrAddToUniqueTable@{FindOrAddToUniqueTable}}
+\index{FindOrAddToUniqueTable@{FindOrAddToUniqueTable}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{FindOrAddToUniqueTable()}{FindOrAddToUniqueTable()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID \& Class\+Project\+::\+Manager\+::\+Find\+Or\+Add\+To\+Unique\+Table (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classHashCode}{Hash\+Code}} \&}]{hash\+Code }\end{DoxyParamCaption})}
+
+Adds a \mbox{\hyperlink{classHashCode}{Hash\+Code}} to the Unique\+Table or returns its ID if it already exists 
+\begin{DoxyParams}{Parameters}
+{\em hash\+Code} & to add or return its BDD\+\_\+\+ID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The BDD\+\_\+\+ID associated with the \mbox{\hyperlink{classHashCode}{Hash\+Code}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClassProject_1_1Manager_a3fd1dba73fd4dde4d63dc4b8c9603593}\label{classClassProject_1_1Manager_a3fd1dba73fd4dde4d63dc4b8c9603593}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!findVars@{findVars}}
+\index{findVars@{findVars}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{findVars()}{findVars()}}
+{\footnotesize\ttfamily void Class\+Project\+::\+Manager\+::find\+Vars (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID \&}]{root,  }\item[{std\+::set$<$ BDD\+\_\+\+ID $>$ \&}]{vars\+\_\+of\+\_\+root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the top var of the given node and the nodes reachable from it
+
+Returns the top var of the given node -\/root-\/ or the top var of the nodes reachable from node root. 
+\begin{DoxyParams}{Parameters}
+{\em root} & Node to get its successors \\
+\hline
+{\em vars\+\_\+of\+\_\+root} & set of BDD\+\_\+\+ID to store the result into \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_a386f879ac4d9f04387b6e748c9c322c5}\label{classClassProject_1_1Manager_a386f879ac4d9f04387b6e748c9c322c5}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!getHashCode@{getHashCode}}
+\index{getHashCode@{getHashCode}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{getHashCode()}{getHashCode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classHashCode}{Hash\+Code}} Class\+Project\+::\+Manager\+::get\+Hash\+Code (\begin{DoxyParamCaption}\item[{BDD\+\_\+\+ID}]{id }\end{DoxyParamCaption})}
+
+Returns the Hash\+Code-\/unique tuple-\/ associated with the given BDD\+\_\+\+ID 
+\begin{DoxyParams}{Parameters}
+{\em id} & BDD\+\_\+\+ID to get its Hash\+Code-\/unique tuple-\/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classHashCode}{Hash\+Code}} associated with the given BDD\+\_\+\+ID 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClassProject_1_1Manager_a6aba83411e18000623a1e4974e5cc143}\label{classClassProject_1_1Manager_a6aba83411e18000623a1e4974e5cc143}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!getHighestVar@{getHighestVar}}
+\index{getHighestVar@{getHighestVar}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{getHighestVar()}{getHighestVar()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::get\+Highest\+Var (\begin{DoxyParamCaption}\item[{std\+::set$<$ BDD\+\_\+\+ID $>$}]{vars\+Set }\end{DoxyParamCaption})}
+
+Takes set of vars and returns the highest priority
+
+The priority is defined by the order of insertion in the unique\+\_\+table 
+\begin{DoxyParams}{Parameters}
+{\em vars\+Set} & Set of variables \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The variable with the highest priority 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClassProject_1_1Manager_a27683826998d51617712d938c427f3d2}\label{classClassProject_1_1Manager_a27683826998d51617712d938c427f3d2}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!getTopVarName@{getTopVarName}}
+\index{getTopVarName@{getTopVarName}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{getTopVarName()}{getTopVarName()}}
+{\footnotesize\ttfamily std\+::string Class\+Project\+::\+Manager\+::get\+Top\+Var\+Name (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID \&}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the name -\/label-\/ of the top\+Var of node root
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Node to get its top\+Var \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+name of top\+Var as string 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_acf11f0c3be27c62741ffe641690f4390}\label{classClassProject_1_1Manager_acf11f0c3be27c62741ffe641690f4390}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!isConstant@{isConstant}}
+\index{isConstant@{isConstant}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{isConstant()}{isConstant()}}
+{\footnotesize\ttfamily bool Class\+Project\+::\+Manager\+::is\+Constant (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns True if f is constant
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & node to check if it\textquotesingle{}s constant or not \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if f is constant 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_ac2f31be64b3f16cf481a82b035b1ebff}\label{classClassProject_1_1Manager_ac2f31be64b3f16cf481a82b035b1ebff}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!isVariable@{isVariable}}
+\index{isVariable@{isVariable}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{isVariable()}{isVariable()}}
+{\footnotesize\ttfamily bool Class\+Project\+::\+Manager\+::is\+Variable (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns True if x is variable
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & node to check if it\textquotesingle{}s a variable or not \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if x is variable 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_af151414343fb0c6a55758f1f4cbe32cd}\label{classClassProject_1_1Manager_af151414343fb0c6a55758f1f4cbe32cd}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!ite@{ite}}
+\index{ite@{ite}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{ite()}{ite()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::ite (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{i,  }\item[{const BDD\+\_\+\+ID}]{t,  }\item[{const BDD\+\_\+\+ID}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Performs the ite(i,t,e,) operation on nodes (i,t,e)
+
+\mbox{\hyperlink{classClassProject_1_1Manager_af151414343fb0c6a55758f1f4cbe32cd}{ite()}} is the \char`\"{}if then else\char`\"{} operation that can modeled as ite(i, t, e) = i⋅t + !i⋅e it\textquotesingle{}s used here to implement logic operations \{ and2, or2, xor2, nand2, nor2, neg\} and to perform shannon decomposition The implementation is recursion based, the terminal cases are\+: ite(1, t, e) = t ite(0, t, e) = e ite(i, 1, 0) = i ite(i, f, f) = f ite(i, 0, 1) = !i At the beginning the code checks for the terminal cases if the input is not a terminal case, it then checks if it has already been calculated and stored in computed\+\_\+table, if it\textquotesingle{}s already calculated the associated BDD\+\_\+\+ID is returned. Otherwise it proceeds with getting the highest var for the input functions (i,t, e) and then uses it to co\+Factor\+True \& co\+Factor\+False each input node. Then ite(i, t, e) is run twice, ite(i.\+high, t.\+high, e.\+high) then ite(i.\+low, t.\+low, e.\+low) if the result of both is equal, the first one is returned, otherwise the result is stored in a \mbox{\hyperlink{classHashCode}{Hash\+Code}} 
+\begin{DoxyParams}{Parameters}
+{\em i} & First variable -\/condition variable-\/ \\
+\hline
+{\em t} & The expected result if i is True \\
+\hline
+{\em e} & The expected result if i is False \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_a4fb0a1913c31a27b4bb6d52e9c5b708e}\label{classClassProject_1_1Manager_a4fb0a1913c31a27b4bb6d52e9c5b708e}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!nand2@{nand2}}
+\index{nand2@{nand2}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{nand2()}{nand2()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::nand2 (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{a,  }\item[{const BDD\+\_\+\+ID}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Performs logical NAND operation on a \& b
+
+Performs logical NAND using ite(ite(a, b, 0), 0, 1) and returns BDD\+\_\+\+ID of the node representing the result of the operation 
+\begin{DoxyParams}{Parameters}
+{\em a} & First node \\
+\hline
+{\em b} & Second node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the result 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_aa70153f3beb2aa81e5574cc129773a3a}\label{classClassProject_1_1Manager_aa70153f3beb2aa81e5574cc129773a3a}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!neg@{neg}}
+\index{neg@{neg}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{neg()}{neg()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::neg (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Performs a logical NOT operation on a Performs logical NOT using ite(a, 0, 1) and returns BDD\+\_\+\+ID of the node representing the result of the operation 
+\begin{DoxyParams}{Parameters}
+{\em a} & Node to negate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the result 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_af024ee443eb84eb26be273396514361d}\label{classClassProject_1_1Manager_af024ee443eb84eb26be273396514361d}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!nor2@{nor2}}
+\index{nor2@{nor2}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{nor2()}{nor2()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::nor2 (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{a,  }\item[{const BDD\+\_\+\+ID}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Performs logical NOR operation on a \& b
+
+Performs logical NOR using ite(ite(a, 1, b), 0, 1) and returns BDD\+\_\+\+ID of the node representing the result of the operation 
+\begin{DoxyParams}{Parameters}
+{\em a} & First node \\
+\hline
+{\em b} & Second node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the result 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_ab671c259909f8761302a5fc15f848089}\label{classClassProject_1_1Manager_ab671c259909f8761302a5fc15f848089}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!or2@{or2}}
+\index{or2@{or2}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{or2()}{or2()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::or2 (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{a,  }\item[{const BDD\+\_\+\+ID}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Performs logical OR operation on a \& b
+
+Performs logical OR using ite(a, 1, b) and returns BDD\+\_\+\+ID of the node representing the result of the operation 
+\begin{DoxyParams}{Parameters}
+{\em a} & First node \\
+\hline
+{\em b} & Second node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the result 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_a0eeab9d42e145bf9bfa345d2d247d9b1}\label{classClassProject_1_1Manager_a0eeab9d42e145bf9bfa345d2d247d9b1}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!printUniqueTable@{printUniqueTable}}
+\index{printUniqueTable@{printUniqueTable}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{printUniqueTable()}{printUniqueTable()}}
+{\footnotesize\ttfamily void Class\+Project\+::\+Manager\+::print\+Unique\+Table (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prints the Uniqetable \mbox{\Hypertarget{classClassProject_1_1Manager_a141d27e906515a1469591ede7dadeecd}\label{classClassProject_1_1Manager_a141d27e906515a1469591ede7dadeecd}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!searchComputedTable@{searchComputedTable}}
+\index{searchComputedTable@{searchComputedTable}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{searchComputedTable()}{searchComputedTable()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::search\+Computed\+Table (\begin{DoxyParamCaption}\item[{BDD\+\_\+\+ID}]{i,  }\item[{BDD\+\_\+\+ID}]{t,  }\item[{BDD\+\_\+\+ID}]{e }\end{DoxyParamCaption})}
+
+Searches the computed\+Table for a result of a previously computed ite(i,t,e) operation, Returns -\/1 if it\textquotesingle{}s not found
+
+Takes as input the parameters of the ite(i,t,e) function, and iterates the computed table looking for the result of the given parameters -\/\mbox{\hyperlink{classHashCode}{Hash\+Code}} \char`\"{}\+Unique tuple\char`\"{}-\/. If found returns the BDD\+\_\+\+ID of the result of the operation from the Unique\+Table, returns -\/1 otherwise. 
+\begin{DoxyParams}{Parameters}
+{\em i} & First parameter of ite(i,t,e) \\
+\hline
+{\em t} & Second parameter of ite(i,t,e) \\
+\hline
+{\em e} & Third parameter of ite(i,t,e) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the result in the Unique\+Table 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClassProject_1_1Manager_a6802240433293ca4fb9e4a97d288c4c5}\label{classClassProject_1_1Manager_a6802240433293ca4fb9e4a97d288c4c5}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!searchUniqueTable@{searchUniqueTable}}
+\index{searchUniqueTable@{searchUniqueTable}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{searchUniqueTable()}{searchUniqueTable()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID \& Class\+Project\+::\+Manager\+::search\+Unique\+Table (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classHashCode}{Hash\+Code}} \&}]{hash\+Code }\end{DoxyParamCaption})}
+
+Returns the BDD\+\_\+\+ID associated with the given \mbox{\hyperlink{classHashCode}{Hash\+Code}}
+
+Iterates the unique table looking for a \mbox{\hyperlink{classHashCode}{Hash\+Code}} that matches the given one and returns the BDD\+\_\+\+ID associated with it, returns -\/1 if it\textquotesingle{}s not found. 
+\begin{DoxyParams}{Parameters}
+{\em hash\+Code} & to get its BDD\+\_\+\+ID \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID if it\textquotesingle{}s found, -\/1 otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classClassProject_1_1Manager_a3fe86d175b50f87c332d7b707ecdd93d}\label{classClassProject_1_1Manager_a3fe86d175b50f87c332d7b707ecdd93d}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!topVar@{topVar}}
+\index{topVar@{topVar}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{topVar()}{topVar()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::top\+Var (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the top variable of node f
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & node to return the top variable for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the top variable of node f 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_a5ac1bca2f7c84a6301ed6cb2cbf4e757}\label{classClassProject_1_1Manager_a5ac1bca2f7c84a6301ed6cb2cbf4e757}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!True@{True}}
+\index{True@{True}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{True()}{True()}}
+{\footnotesize\ttfamily const BDD\+\_\+\+ID \& Class\+Project\+::\+Manager\+::\+True (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the BDD\+\_\+\+ID of the True node i.\+e 1 \begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the True node 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_a14df23d00c8b7d5db1498a6196b076ff}\label{classClassProject_1_1Manager_a14df23d00c8b7d5db1498a6196b076ff}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!uniqueTableSize@{uniqueTableSize}}
+\index{uniqueTableSize@{uniqueTableSize}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{uniqueTableSize()}{uniqueTableSize()}}
+{\footnotesize\ttfamily size\+\_\+t Class\+Project\+::\+Manager\+::unique\+Table\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the size of the unique table \begin{DoxyReturn}{Returns}
+size of the unique table 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+\mbox{\Hypertarget{classClassProject_1_1Manager_a30f93f17fd3ba121b93bcee877165dd6}\label{classClassProject_1_1Manager_a30f93f17fd3ba121b93bcee877165dd6}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!xor2@{xor2}}
+\index{xor2@{xor2}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{xor2()}{xor2()}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::xor2 (\begin{DoxyParamCaption}\item[{const BDD\+\_\+\+ID}]{a,  }\item[{const BDD\+\_\+\+ID}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Performs logical XOR operation on a \& b
+
+Performs logical XOR using ite(a, neg(b), b) and returns BDD\+\_\+\+ID of the node representing the result of the operation 
+\begin{DoxyParams}{Parameters}
+{\em a} & First node \\
+\hline
+{\em b} & Second node \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+BDD\+\_\+\+ID of the result 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classClassProject_1_1ManagerInterface}{Class\+Project\+::\+Manager\+Interface}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classClassProject_1_1Manager_a7fd592327d6c28469905fbd06de818d7}\label{classClassProject_1_1Manager_a7fd592327d6c28469905fbd06de818d7}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!computed\_table@{computed\_table}}
+\index{computed\_table@{computed\_table}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{computed\_table}{computed\_table}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::array$<$BDD\+\_\+\+ID, 4$>$ $>$ Class\+Project\+::\+Manager\+::computed\+\_\+table\hspace{0.3cm}{\ttfamily [private]}}
+
+Table to store the result of each ite(i,t,e) call \mbox{\Hypertarget{classClassProject_1_1Manager_a789ef2b659cc7bcdcc43937da3b9ab61}\label{classClassProject_1_1Manager_a789ef2b659cc7bcdcc43937da3b9ab61}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!node\_id@{node\_id}}
+\index{node\_id@{node\_id}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{node\_id}{node\_id}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::node\+\_\+id\hspace{0.3cm}{\ttfamily [private]}}
+
+BDD\+\_\+\+ID counter, keeps track of last used BDD\+\_\+\+ID \mbox{\Hypertarget{classClassProject_1_1Manager_ac6fb70b28def9495894a280b47c4210e}\label{classClassProject_1_1Manager_ac6fb70b28def9495894a280b47c4210e}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!node\_label@{node\_label}}
+\index{node\_label@{node\_label}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{node\_label}{node\_label}}
+{\footnotesize\ttfamily std\+::string Class\+Project\+::\+Manager\+::node\+\_\+label\hspace{0.3cm}{\ttfamily [private]}}
+
+Internal string used to create label for nodes that represent a function \mbox{\Hypertarget{classClassProject_1_1Manager_a529950fb1807141c5bd2b72d5dd309cd}\label{classClassProject_1_1Manager_a529950fb1807141c5bd2b72d5dd309cd}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!search\_result@{search\_result}}
+\index{search\_result@{search\_result}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{search\_result}{search\_result}}
+{\footnotesize\ttfamily BDD\+\_\+\+ID Class\+Project\+::\+Manager\+::search\+\_\+result\hspace{0.3cm}{\ttfamily [private]}}
+
+Used to store the return values for some functions, to return by reference \mbox{\Hypertarget{classClassProject_1_1Manager_a526dcdd50dced7f982b915c4e30011bb}\label{classClassProject_1_1Manager_a526dcdd50dced7f982b915c4e30011bb}} 
+\index{ClassProject::Manager@{ClassProject::Manager}!unique\_table@{unique\_table}}
+\index{unique\_table@{unique\_table}!ClassProject::Manager@{ClassProject::Manager}}
+\doxysubsubsection{\texorpdfstring{unique\_table}{unique\_table}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$BDD\+\_\+\+ID, \mbox{\hyperlink{classHashCode}{Hash\+Code}}$>$ Class\+Project\+::\+Manager\+::unique\+\_\+table\hspace{0.3cm}{\ttfamily [private]}}
+
+unordered\+\_\+map that represents the ROBDD 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/habi/\+CLion\+Projects/\+VDSCP-\/\+Group-\/5/src/\mbox{\hyperlink{Manager_8h}{Manager.\+h}}\item 
+/home/habi/\+CLion\+Projects/\+VDSCP-\/\+Group-\/5/src/\mbox{\hyperlink{Manager_8cpp}{Manager.\+cpp}}\end{DoxyCompactItemize}
