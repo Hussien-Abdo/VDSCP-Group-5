@@ -22,5 +22,9 @@ $ cmake ..
 $ make
 ```
 The build files are currently saved to build dir, now you can run `./VDSProject_tests` to execute the basic tests.
+### How to BanchMark?
+First you need to install [BOOST](https://www.boost.org/) ~0.5GB 
+```sudo apt-get install libboost-all-dev```
+
 ### How to use?
 #### TBD :)
