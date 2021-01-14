@@ -252,4 +252,32 @@ namespace {
         m.and2(or2, and2);
         EXPECT_EQ(m.uniqueTableSize(), 10);
     }
+
+    TEST_F(ManagerTest, getHighestVar) {
+        SetUp(4);
+        std::set<BDD_ID> set1 = {var1, var2, var3};
+        std::set<BDD_ID> set2 = {var1, 0, 0};
+        std::set<BDD_ID> set3 = {var1, 1, 0};
+        std::set<BDD_ID> set4 = {0, var1, 0};
+        std::set<BDD_ID> set5 = {1, var1, 0};
+        std::set<BDD_ID> set6 = {var1, var2, 0};
+        std::set<BDD_ID> set7 = {0, var1, var1};
+        std::set<BDD_ID> set8 = {var1, var2, 0};
+        std::set<BDD_ID> set9 = {var1, 1, 1};
+        std::set<BDD_ID> set10 = {var2, var2, var3};
+        std::set<BDD_ID> set13 = {1, 1, var1};
+
+        EXPECT_EQ(m.getHighestVar(set1), var1);
+        EXPECT_EQ(m.getHighestVar(set2), var1);
+        EXPECT_EQ(m.getHighestVar(set3), var1);
+        EXPECT_EQ(m.getHighestVar(set4), var1);
+        EXPECT_EQ(m.getHighestVar(set5), var1);
+        EXPECT_EQ(m.getHighestVar(set6), var1);
+        EXPECT_EQ(m.getHighestVar(set7), var1);
+        EXPECT_EQ(m.getHighestVar(set8), var1);
+        EXPECT_EQ(m.getHighestVar(set9), var1);
+        EXPECT_EQ(m.getHighestVar(set10), var2);
+        EXPECT_EQ(m.getHighestVar(set13), var1);
+    }
+
 }
