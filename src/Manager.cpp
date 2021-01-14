@@ -29,7 +29,7 @@ namespace ClassProject {
      */
     BDD_ID Manager::createVar(const std::string &label) {
         node_id++;
-        unique_table[node_id] = HashCode(label, True(), False(), node_id);
+        unique_table.insert(std::pair<BDD_ID, HashCode> (node_id,HashCode(label, True(), False(), node_id)));
         return node_id;
     }
 
@@ -117,8 +117,7 @@ namespace ClassProject {
 //                node_label = unique_table[i].getLabel();
 //                if (node_label[0] == '!') node_label.erase(node_label.begin()); else node_label = "!" + node_label;
                 HashCode not_i = HashCode("", unique_table[i].getLow(), unique_table[i].getHigh(), topVar(i));
-                node_id = FindOrAddToUniqueTable(not_i);
-                return node_id;
+                return FindOrAddToUniqueTable(not_i);
             } else {
                 BDD_ID result = searchComputedTable(i, t, e);
                 if (result != -1)
@@ -137,8 +136,7 @@ namespace ClassProject {
                 return r_high;
             }
             HashCode node = HashCode("", r_high, r_low, ite_top_var);
-            node_id = FindOrAddToUniqueTable(node);
-            computed_table.emplace(std::tuple<BDD_ID, BDD_ID, BDD_ID>(i,t,e), node_id);
+            computed_table.emplace(std::tuple<BDD_ID, BDD_ID, BDD_ID>(i,t,e), FindOrAddToUniqueTable(node));
         }
         catch(std::bad_alloc &ba)
         {
@@ -389,8 +387,8 @@ namespace ClassProject {
 //        if (unique_table[node_id].getLabel() == "f" && node_label[0] != '!') unique_table[node_id].setLabel("");
         node_id++;
 //        if (node_label.empty()) node_label += "f";
-        std::pair<BDD_ID, HashCode> s1(node_id,HashCode(hashCode));
-        unique_table.insert(s1);
+        std::pair<BDD_ID, HashCode> newNode(node_id, hashCode);
+        unique_table.insert(newNode);
 //        unique_table[node_id].setLabel(node_label);
 //        node_label = "";
         return node_id;
@@ -429,8 +427,7 @@ namespace ClassProject {
         }
         if(setTmp.empty())
         {
-            std:: cout << "log error"; // log error
-            exit(0);
+           return -1;
         }
         else
         {

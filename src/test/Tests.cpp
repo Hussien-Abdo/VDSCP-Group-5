@@ -280,4 +280,24 @@ namespace {
         EXPECT_EQ(m.getHighestVar(set13), var1);
     }
 
+    TEST_F(ManagerTest, benchCase) {
+        BDD_ID v50 = m.createVar("50");
+        BDD_ID v58 = m.createVar("58");
+        BDD_ID v68 = m.createVar("68");
+        BDD_ID v77 = m.createVar("77");
+
+        BDD_ID n702 = m.neg(v77);
+        BDD_ID n842 = m.neg(v50);
+        BDD_ID n848 = m.neg(v58);
+        BDD_ID n854 = m.neg(v68);
+
+        BDD_ID v1250 = m.and2(n842, n848);
+        BDD_ID v12502 = m.and2(v1250,n854);
+        BDD_ID v1505 = m.nand2(n702, v12502);
+        BDD_ID v1713 = m.neg(v1505);
+
+        std::cout << "              *************************** f = neg(and(or(a,b),and(c,d))) ****************************\n";
+        m.printUniqueTable();
+    }
+
 }

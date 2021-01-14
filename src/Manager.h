@@ -28,12 +28,13 @@ namespace ClassProject {
 
     private:
         BDD_ID node_id; /**< BDD_ID counter, keeps track of last used BDD_ID */
-        //std::string node_label; /**<  Internal string used to create label for nodes that represent a function */
+//        std::string node_label; /**<  Internal string used to create label for nodes that represent a function */
         BDD_ID search_result; /**< Used to store the return values for some functions, to return by reference */
         std::unordered_map<BDD_ID, HashCode> unique_table; /**< unordered_map that represents the ROBDD */
         std::map<std::tuple<BDD_ID , BDD_ID, BDD_ID>, BDD_ID> computed_table; /**< Table to store the result of each ite(i,t,e) call */
         BDD_ID trueNode=1;
         BDD_ID falseNode=0;
+        BDD_ID top_var;
 
     public:
 
