@@ -18,6 +18,7 @@ namespace ClassProject {
         std::pair<BDD_ID, HashCode> s1(1,HashCode("1", 1, 1, 1));
         unique_table.insert(s1);
         node_id += 1;
+        std::cout << "node_id: " << node_id << "\n";
 
     }
 
@@ -29,6 +30,7 @@ namespace ClassProject {
      */
     BDD_ID Manager::createVar(const std::string &label) {
         node_id++;
+        std::cout << "node_id: " << node_id << "\n";
         unique_table.insert(std::pair<BDD_ID, HashCode> (node_id,HashCode(label, True(), False(), node_id)));
         return node_id;
     }
@@ -104,19 +106,18 @@ namespace ClassProject {
      * @return
      */
     BDD_ID Manager::ite(const BDD_ID i, const BDD_ID t, const BDD_ID e) {
-        try {
+            BDD_ID id;
             //Terminal cases
             if (t == 1 && e == 0) {
                 return i;
             } else if (i == 1 || t == e) {
-
                 return t;
             } else if (i == 0) {
                 return e;
             } else if (!isConstant(i) && t == 0 && e == 1) {                    //negate case
 //                node_label = unique_table[i].getLabel();
 //                if (node_label[0] == '!') node_label.erase(node_label.begin()); else node_label = "!" + node_label;
-                HashCode not_i = HashCode("", unique_table[i].getLow(), unique_table[i].getHigh(), topVar(i));
+                HashCode not_i = HashCode("", coFactorFalse(i), coFactorTrue(i), topVar(i));
                 return FindOrAddToUniqueTable(not_i);
             } else {
                 BDD_ID result = searchComputedTable(i, t, e);
@@ -136,14 +137,9 @@ namespace ClassProject {
                 return r_high;
             }
             HashCode node = HashCode("", r_high, r_low, ite_top_var);
-            computed_table.emplace(std::tuple<BDD_ID, BDD_ID, BDD_ID>(i,t,e), FindOrAddToUniqueTable(node));
-        }
-        catch(std::bad_alloc &ba)
-        {
-                std::cerr << "bad_alloc caught: " << ba.what() << '\n';
-                return -1;
-        }
-        return node_id;
+            id = FindOrAddToUniqueTable(node);
+            computed_table.emplace(std::tuple<BDD_ID, BDD_ID, BDD_ID>(i,t,e), id);
+            return id;
     }
 
     /**
@@ -283,7 +279,7 @@ namespace ClassProject {
     BDD_ID Manager::nand2(const BDD_ID a, const BDD_ID b) {
 //        if (isVariable(a) && isVariable(b))
 //            node_label += "nand(" + unique_table[a].getLabel() + "," + unique_table[b].getLabel() + ")";
-        return ite(a, neg(b), 1);
+        return neg(ite(a, b, 0));
     }
 
     /**
@@ -358,6 +354,7 @@ namespace ClassProject {
         for (auto &element : unique_table) {
             if (element.second == hashCode) {
                 search_result = element.first;
+                std::cout << "ComputedSearch: foundllllllllll" << "\n";
                 return search_result;
             }
         }
@@ -386,6 +383,7 @@ namespace ClassProject {
         }
 //        if (unique_table[node_id].getLabel() == "f" && node_label[0] != '!') unique_table[node_id].setLabel("");
         node_id++;
+        std::cout << "node_id: " << node_id << "\n";
 //        if (node_label.empty()) node_label += "f";
         std::pair<BDD_ID, HashCode> newNode(node_id, hashCode);
         unique_table.insert(newNode);
@@ -406,9 +404,12 @@ namespace ClassProject {
      * @return BDD_ID of the result in the UniqueTable
      */
     BDD_ID Manager::searchComputedTable(BDD_ID i, BDD_ID t, BDD_ID e) {
-        auto it = computed_table.find(std::tuple<BDD_ID , BDD_ID, BDD_ID>(i,t,e));
+        auto it = computed_table.find(std::tuple<BDD_ID, BDD_ID, BDD_ID>(i, t, e));
         if (it != computed_table.end())
+        {
+            std::cout << "ComputedSearch: computeddddddddddddddddddddddddddddddddddddd" << "\n";
             return it->second;
+        }
         return -1;
     }
 
