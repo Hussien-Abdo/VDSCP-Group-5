@@ -300,4 +300,17 @@ namespace {
         m.printUniqueTable();
     }
 
+    TEST_F(ManagerTest, benchCase1) {
+        BDD_ID v87 = m.createVar("87");
+        BDD_ID v97 = m.createVar("97");
+        BDD_ID v107 = m.createVar("107");
+
+        BDD_ID n736 = m.neg(v97);
+        BDD_ID n749 = m.neg(v107);
+        BDD_ID v1264 = m.nand2(n736,n749);
+        BDD_ID v1714 = m.and2(v87, v1264);
+
+        std::cout << "              *************************** f = neg(and(or(a,b),and(c,d))) ****************************\n";
+        m.printUniqueTable();
+    }
 }

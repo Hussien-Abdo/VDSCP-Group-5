@@ -114,15 +114,18 @@ namespace ClassProject {
                 return t;
             } else if (i == 0) {
                 return e;
-            } else if (!isConstant(i) && t == 0 && e == 1) {                    //negate case
-//                node_label = unique_table[i].getLabel();
-//                if (node_label[0] == '!') node_label.erase(node_label.begin()); else node_label = "!" + node_label;
-                HashCode not_i = HashCode("", coFactorFalse(i), coFactorTrue(i), topVar(i));
-                return FindOrAddToUniqueTable(not_i);
             } else {
                 BDD_ID result = searchComputedTable(i, t, e);
                 if (result != -1)
                     return result;
+            }
+            if (!isConstant(i) && t == 0 && e == 1) {                    //negate case
+//                node_label = unique_table[i].getLabel();
+//                if (node_label[0] == '!') node_label.erase(node_label.begin()); else node_label = "!" + node_label;
+                HashCode not_i = HashCode("", coFactorFalse(i), coFactorTrue(i), topVar(i));
+                id = FindOrAddToUniqueTable(not_i);
+                computed_table.emplace(std::tuple<BDD_ID, BDD_ID, BDD_ID>(i,t,e), id);
+                return id;
             }
             BDD_ID ite_top_var = getHighestVar(std::set<BDD_ID>{i, t, e});
             BDD_ID i_topVarTrue = coFactorTrue(i, ite_top_var);
@@ -279,7 +282,7 @@ namespace ClassProject {
     BDD_ID Manager::nand2(const BDD_ID a, const BDD_ID b) {
 //        if (isVariable(a) && isVariable(b))
 //            node_label += "nand(" + unique_table[a].getLabel() + "," + unique_table[b].getLabel() + ")";
-        return neg(ite(a, b, 0));
+        return ite(a, neg(b), 1);
     }
 
     /**
