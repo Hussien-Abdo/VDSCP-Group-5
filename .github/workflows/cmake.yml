@@ -46,7 +46,7 @@ jobs:
 
       - name: Bench
         working-directory: ${{runner.workspace}}/build/src/bench
-        run: pwd && ./VDSProject_bench ../../src/bench/c3540.bench
+        run: pwd && ./VDSProject_bench ../../../src/bench/c3540.bench
 #    - name: Upload test results
 #        uses: actions/upload-artifact@v2
 #        if: failure()
