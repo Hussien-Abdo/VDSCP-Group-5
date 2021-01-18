@@ -8,15 +8,13 @@
 #define mwBDD_H
 
 #include <iostream>
-#include <list>
-#include <vector>
 #include <unordered_map>
-#include <map>
 #include <set>
 #include <string>
 #include "ManagerInterface.h"
+#include "Container.h"
 #include "HashCode.h"
-#include <tuple>
+#include <boost/functional/hash.hpp>
 
 namespace ClassProject {
 /**
@@ -27,15 +25,23 @@ namespace ClassProject {
     class Manager : public ManagerInterface {
 
     private:
+        struct Container_Hash{
+            std::size_t operator()(Container const& container3BddId) const noexcept{
+                std::size_t seed=0;
+                boost::hash_combine(seed, container3BddId.getE1());
+                boost::hash_combine(seed, container3BddId.getE2());
+                boost::hash_combine(seed, container3BddId.getE3());
+                return seed;
+            }
+        };
         BDD_ID node_id; /**< BDD_ID counter, keeps track of last used BDD_ID */
 //        std::string node_label; /**<  Internal string used to create label for nodes that represent a function */
         BDD_ID search_result; /**< Used to store the return values for some functions, to return by reference */
         std::unordered_map<BDD_ID, HashCode> unique_table; /**< unordered_map that represents the ROBDD */
-        std::map<std::tuple<BDD_ID , BDD_ID, BDD_ID>, BDD_ID> computed_table; /**< Table to store the result of each ite(i,t,e) call */
-        std::map<std::tuple<BDD_ID , BDD_ID, BDD_ID>, BDD_ID> u_table; /**< Table to store the result of each ite(i,t,e) call */
-        BDD_ID trueNode=1;
-        BDD_ID falseNode=0;
-        BDD_ID top_var;
+        std::unordered_map<Container, BDD_ID,Container_Hash> computed_table; /**< Table to store the result of each ite(i,t,e) call */
+        std::unordered_map<Container, BDD_ID,Container_Hash> u_table; /**< Table to store the result of each ite(i,t,e) call */
+        BDD_ID trueNode = 1;
+        BDD_ID falseNode = 0;
 
     public:
 
@@ -88,9 +94,9 @@ namespace ClassProject {
 
         HashCode getHashCode(BDD_ID id);
 
-        BDD_ID searchComputedTable(BDD_ID i, BDD_ID t, BDD_ID e);
+        BDD_ID &searchComputedTable(const BDD_ID &i,const BDD_ID &t,const BDD_ID &e);
 
-        BDD_ID getHighestVar(std::set<BDD_ID> varsSet);
+        BDD_ID &getHighestVar(const std::set<BDD_ID> &varsSet);
 
         void printUniqueTable();
 

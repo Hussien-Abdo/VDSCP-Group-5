@@ -4,6 +4,7 @@
 
 #include "gtest/gtest.h"
 #include "../HashCode.cpp"
+#include "../Container.cpp"
 #include "ManagerTest.cpp"
 
 using namespace ClassProject;
@@ -86,9 +87,9 @@ namespace {
         EXPECT_EQ(m.getHashCode(f).getLow(), 8);
         EXPECT_EQ(m.getHashCode(f).getTopVar(), 2);
         BDD_ID neg_f = m.neg(m.and2(or2, and2));
-        EXPECT_EQ(neg_f, 10);
-        EXPECT_EQ(m.getHashCode(neg_f).getHigh(), 8);
-        EXPECT_EQ(m.getHashCode(neg_f).getLow(), 7);
+        EXPECT_EQ(neg_f, 13);
+        EXPECT_EQ(m.getHashCode(neg_f).getHigh(), 11);
+        EXPECT_EQ(m.getHashCode(neg_f).getLow(), 12);
         EXPECT_EQ(m.getHashCode(neg_f).getTopVar(), 2);
         std::cout << "              *************************** f = neg(and(or(a,b),and(c,d))) ****************************\n";
         m.printUniqueTable();
@@ -296,7 +297,7 @@ namespace {
         BDD_ID v1505 = m.nand2(n702, v12502);
         BDD_ID v1713 = m.neg(v1505);
 
-        std::cout << "              *************************** f = neg(and(or(a,b),and(c,d))) ****************************\n";
+        std::cout << "              *************************** benchCase ****************************\n";
         m.printUniqueTable();
     }
 
@@ -309,8 +310,7 @@ namespace {
         BDD_ID n749 = m.neg(v107);
         BDD_ID v1264 = m.nand2(n736,n749);
         BDD_ID v1714 = m.and2(v87, v1264);
-
-        std::cout << "              *************************** f = neg(and(or(a,b),and(c,d))) ****************************\n";
+        std::cout << "              *************************** benchCase1 ****************************\n";
         m.printUniqueTable();
     }
 }

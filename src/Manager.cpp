@@ -12,15 +12,12 @@ namespace ClassProject {
      */
     Manager::Manager() {
         node_id = 0;
-//        std::string node_label = "";
-        std::pair<BDD_ID, HashCode> s(0,HashCode("0", 0, 0, 0));
-        unique_table.insert(s);
-        u_table.emplace(std::tuple<BDD_ID, BDD_ID, BDD_ID>(0,0,0), 0);
-        std::pair<BDD_ID, HashCode> s1(1,HashCode("1", 1, 1, 1));
-        unique_table.insert(s1);
-        u_table.emplace(std::tuple<BDD_ID, BDD_ID, BDD_ID>(1,1,1), 1);
+        unique_table.emplace(std::pair<BDD_ID, HashCode>(0, HashCode("0", 0, 0, 0)));
+        u_table.emplace(std::pair<Container, BDD_ID>(Container(0, 0, 0), 0));
+        unique_table.emplace(std::pair<BDD_ID, HashCode>(1, HashCode("1", 1, 1, 1)));
+        u_table.emplace(std::pair<Container, BDD_ID>(Container(1, 1, 1), 1));
+//      std::pair<std::tuple<BDD_ID ,BDD_ID ,BDD_ID>, BDD_ID> true_node_r_pair(std::tuple<BDD_ID, BDD_ID, BDD_ID>(1,1,1), 1);
         node_id += 1;
-//        std::cout << "node_id: " << node_id << "\n";
 
     }
 
@@ -33,8 +30,9 @@ namespace ClassProject {
     BDD_ID Manager::createVar(const std::string &label) {
         node_id++;
 //        std::cout << "node_id: " << node_id << "\n";
-        unique_table.insert(std::pair<BDD_ID, HashCode> (node_id,HashCode(label, True(), False(), node_id)));
-        u_table.emplace(std::tuple<BDD_ID, BDD_ID, BDD_ID>(True(),False(),node_id), node_id);
+        HashCode hashCode=HashCode(label, True(), False(), node_id);
+        unique_table.emplace(std::pair<BDD_ID, HashCode>(node_id, hashCode));
+        u_table.emplace(std::pair<Container, BDD_ID>(Container(hashCode.getHigh(), hashCode.getLow(), hashCode.getTopVar()), node_id));
         return node_id;
     }
 
@@ -109,35 +107,35 @@ namespace ClassProject {
      * @return
      */
     BDD_ID Manager::ite(const BDD_ID i, const BDD_ID t, const BDD_ID e) {
-            BDD_ID id;
-            //Terminal cases
-            if (t == 1 && e == 0) {
-                return i;
-            } else if (i == 1 || t == e) {
-                return t;
-            } else if (i == 0) {
-                return e;
-            } else {
-                BDD_ID result = searchComputedTable(i, t, e);
-                if (result != -1)
-                    return result;
-            }
-            BDD_ID ite_top_var = getHighestVar(std::set<BDD_ID>{i, t, e});
-            BDD_ID i_topVarTrue = coFactorTrue(i, ite_top_var);
-            BDD_ID i_topVarFalse = coFactorFalse(i, ite_top_var);
-            BDD_ID t_topVarTrue = coFactorTrue(t, ite_top_var);
-            BDD_ID t_topVarFalse = coFactorFalse(t, ite_top_var);
-            BDD_ID e_topVarTrue = coFactorTrue(e, ite_top_var);
-            BDD_ID e_topVarFalse = coFactorFalse(e, ite_top_var);
-            BDD_ID r_high = ite(i_topVarTrue, t_topVarTrue, e_topVarTrue);
-            BDD_ID r_low = ite(i_topVarFalse, t_topVarFalse, e_topVarFalse);
-            if (r_high == r_low) {
-                return r_high;
-            }
-            HashCode node = HashCode("", r_high, r_low, ite_top_var);
-            id = FindOrAddToUniqueTable(node);
-            computed_table.emplace(std::tuple<BDD_ID, BDD_ID, BDD_ID>(i,t,e), id);
-            return id;
+        BDD_ID id;
+        //Terminal cases
+        if (t == 1 && e == 0) {
+            return i;
+        } else if (i == 1 || t == e) {
+            return t;
+        } else if (i == 0) {
+            return e;
+        } else {
+            BDD_ID result = searchComputedTable(i, t, e);
+            if (result != -1)
+                return result;
+        }
+        BDD_ID ite_top_var = getHighestVar(std::set<BDD_ID>{i, t, e});
+        BDD_ID i_topVarTrue = coFactorTrue(i, ite_top_var);
+        BDD_ID i_topVarFalse = coFactorFalse(i, ite_top_var);
+        BDD_ID t_topVarTrue = coFactorTrue(t, ite_top_var);
+        BDD_ID t_topVarFalse = coFactorFalse(t, ite_top_var);
+        BDD_ID e_topVarTrue = coFactorTrue(e, ite_top_var);
+        BDD_ID e_topVarFalse = coFactorFalse(e, ite_top_var);
+        BDD_ID r_high = ite(i_topVarTrue, t_topVarTrue, e_topVarTrue);
+        BDD_ID r_low = ite(i_topVarFalse, t_topVarFalse, e_topVarFalse);
+        if (r_high == r_low) {
+            return r_high;
+        }
+        HashCode node = HashCode("", r_high, r_low, ite_top_var);
+        id = FindOrAddToUniqueTable(node);
+        computed_table.emplace(std::pair<Container,BDD_ID>(Container(i, t, e), id));
+        return id;
     }
 
     /**
@@ -311,7 +309,7 @@ namespace ClassProject {
      * @param nodes_of_root set of BDD_ID to store the result into
      */
     void Manager::findNodes(const BDD_ID &root, std::set<BDD_ID> &nodes_of_root) {
-        nodes_of_root.insert(root);
+        nodes_of_root.emplace(root);
         if (!isConstant(root)) {
             findNodes(unique_table[root].getHigh(), nodes_of_root);
             findNodes(unique_table[root].getLow(), nodes_of_root);
@@ -327,7 +325,7 @@ namespace ClassProject {
      */
     void Manager::findVars(const BDD_ID &root, std::set<BDD_ID> &vars_of_root) {
         if (!isConstant(root)) {
-            vars_of_root.insert(topVar(root));
+            vars_of_root.emplace(topVar(root));
             findVars(unique_table[root].getHigh(), vars_of_root);
             findVars(unique_table[root].getLow(), vars_of_root);
         }
@@ -349,10 +347,8 @@ namespace ClassProject {
      * @return BDD_ID if it's found, -1 otherwise.
      */
     BDD_ID &Manager::searchUniqueTable(const HashCode &hashCode) {
-        std::tuple<BDD_ID, BDD_ID, BDD_ID> T(hashCode.getHigh(),hashCode.getLow(),hashCode.getTopVar());
-        auto it = u_table.find(T);
-        if (it != u_table.end())
-        {
+        auto it = u_table.find(Container(hashCode.getHigh(), hashCode.getLow(), hashCode.getTopVar()));
+        if (it != u_table.end()) {
 //            std::cout << "ComputedSearch: foundllllllllll" << "\n";
             return it->second;
         }
@@ -383,9 +379,8 @@ namespace ClassProject {
         node_id++;
 //        std::cout << "node_id: " << node_id << "\n";
 //        if (node_label.empty()) node_label += "f";
-        std::pair<BDD_ID, HashCode> newNode(node_id, hashCode);
-        unique_table.insert(newNode);
-        u_table.emplace(std::tuple<BDD_ID, BDD_ID, BDD_ID>(hashCode.getHigh(),hashCode.getLow(),hashCode.getTopVar()), node_id);
+        unique_table.emplace(std::pair<BDD_ID, HashCode>(node_id,hashCode));
+        u_table.emplace(std::pair<Container, BDD_ID>(Container(hashCode.getHigh(), hashCode.getLow(), hashCode.getTopVar()), node_id));
 //        unique_table[node_id].setLabel(node_label);
 //        node_label = "";
         return node_id;
@@ -402,14 +397,14 @@ namespace ClassProject {
      * @param e Third parameter of ite(i,t,e)
      * @return BDD_ID of the result in the UniqueTable
      */
-    BDD_ID Manager::searchComputedTable(BDD_ID i, BDD_ID t, BDD_ID e) {
-        auto it = computed_table.find(std::tuple<BDD_ID, BDD_ID, BDD_ID>(i, t, e));
-        if (it != computed_table.end())
-        {
+    BDD_ID &Manager::searchComputedTable(const BDD_ID &i,const BDD_ID &t,const BDD_ID &e) {
+        search_result=-1;
+        auto it = computed_table.find(Container(i, t, e));
+        if (it != computed_table.end()) {
 //            std::cout << "ComputedSearch: computeddddddddddddddddddddddddddddddddddddd" << "\n";
             return it->second;
         }
-        return -1;
+        return search_result;
     }
 
     /** Takes set of vars and returns the highest priority
@@ -418,26 +413,23 @@ namespace ClassProject {
      * @param varsSet Set of variables
      * @return The variable with the highest priority
      */
-    BDD_ID Manager::getHighestVar(std::set<BDD_ID> varSet) {
+    BDD_ID &Manager::getHighestVar(const std::set<BDD_ID> &varSet) {
         std::set<BDD_ID> setTmp;
-        for(auto& element : varSet)
-        {
-            if(!isConstant(element))
-                setTmp.insert(element);
+        for (auto &element : varSet) {
+            if (!isConstant(element))
+                setTmp.emplace(element);
         }
-        if(setTmp.empty())
-        {
-           return -1;
-        }
-        else
-        {
+        if (setTmp.empty()) {
+            search_result=-1;
+            return search_result;
+        } else {
             BDD_ID value = *(setTmp.begin());
-            for(auto& element : setTmp)
-            {
-                if(topVar(element) < topVar(value))
+            for (auto &element : setTmp) {
+                if (topVar(element) < topVar(value))
                     value = element;
             }
-            return topVar(value);
+            search_result=topVar(value);
+            return search_result;
         }
     }
 
