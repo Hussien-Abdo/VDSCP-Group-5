@@ -44,9 +44,6 @@ jobs:
         working-directory: ${{runner.workspace}}/build
         run: GTEST_OUTPUT=xml:test-results/ GTEST_COLOR=1 ctest -V
 
-      - name: Bench
-        working-directory: ${{runner.workspace}}/build/src/bench
-        run: cd ../../../ && pwd && ls
 #    - name: Upload test results
 #        uses: actions/upload-artifact@v2
 #        if: failure()
