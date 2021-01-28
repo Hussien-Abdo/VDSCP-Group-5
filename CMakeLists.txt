@@ -32,14 +32,14 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 set(TEST_NAME ${PROJECT_NAME}_tests)
-add_executable(${TEST_NAME} src/test/Tests.cpp)
+add_executable(${TEST_NAME} src/test/Tests.cpp src/reachable/Tests.h)
 target_link_libraries(${TEST_NAME} gtest_main)
 
-set(TEST_Reachability ${PROJECT_NAME}_reachability)
-add_executable(${TEST_Reachability} src/reachable/Tests.h)
-target_link_libraries(${TEST_Reachability} gtest_main)
+#set(TEST_Reachability ${PROJECT_NAME}_reachability)
+#add_executable(${TEST_Reachability} src/reachable/Tests.h)
+#target_link_libraries(${TEST_Reachability} gtest_main)
 
 enable_testing()
 include(GoogleTest)
 gtest_discover_tests(${TEST_NAME})
-gtest_discover_tests(${TEST_Reachability})
+#gtest_discover_tests(${TEST_Reachability})
