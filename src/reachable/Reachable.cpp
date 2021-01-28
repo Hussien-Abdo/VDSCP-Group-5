@@ -27,22 +27,22 @@ namespace ClassProject {
 
     void Reachable::setDelta(const std::vector<BDD_ID> &transitionFunctions) {
         std::vector<BDD_ID> taus;
-    for(auto i=0;i<transitionFunctions.size();i++){
-        taus.push_back(xnor2(next_states.at(i),transitionFunctions.at(i)));
-    }
-    tau=taus.at(0);
-    for(int i=1;i<taus.size();i++){
-        tau=and2(tau, taus.at(i));
-    }
+         for(auto i=0;i<stateSize;i++){
+           taus.push_back(xnor2(next_states.at(i),transitionFunctions.at(i)));
+        }
+        tau=taus.at(0);
+        for(int i=1;i<taus.size();i++){
+           tau=and2(tau, taus.at(i));
+        }
     }
 
     void Reachable::setInitState(const std::vector<bool> &stateVector) {
         std::vector<BDD_ID> temp_BDD_ID;
-        for(auto i=0;i<stateVector.size();i++){
-            temp_BDD_ID.push_back(xnor2(stateVector.at(i),states.at(0)));
+        for(auto i=0;i<stateSize;i++){
+            temp_BDD_ID.push_back(xnor2(states.at(i), stateVector.at(i)));
         }
         C_S0=temp_BDD_ID.at(0);
-        for(int i=1;i<temp_BDD_ID.size();i++){
+        for(int i=1;i<stateSize;i++){
             C_S0=and2(C_S0, temp_BDD_ID.at(i));
         }
     }
@@ -51,45 +51,67 @@ namespace ClassProject {
         BDD_ID C_R;
         BDD_ID C_R_it=C_S0;
         BDD_ID temp_BDD_ID;
-        BDD_ID temp2_BDD_ID;
-        BDD_ID temp3_BDD_ID;
         BDD_ID img_next;
         BDD_ID img_current;
         do{
             C_R=C_R_it;
             temp_BDD_ID=and2(C_R,tau);
             //STEP 8
-            for(auto i=stateSize-1;i>0;i--){
-                temp2_BDD_ID=and2(coFactorTrue(temp_BDD_ID,states.at(i)),coFactorFalse(temp_BDD_ID,states.at(i)));
-                img_next=and2(coFactorTrue(temp2_BDD_ID, states.at(i - 1)), coFactorFalse(temp2_BDD_ID, states.at(i - 1)));
+            for(signed int i=stateSize-1;i>=0;i--){
+                temp_BDD_ID=or2(coFactorTrue(temp_BDD_ID,states.at(i)),coFactorFalse(temp_BDD_ID,states.at(i)));
             }
+            img_next = temp_BDD_ID;
             //STEP9
             std::vector<BDD_ID> temp_vector;
-            for(auto i=0;i<stateSize-1;i++){
+            for(auto i=0;i<stateSize;i++){
                 temp_vector.push_back(xnor2(states.at(i),next_states.at(i)));
             }
             temp_BDD_ID=temp_vector.at(0);
-            for(int i=1;i<temp_vector.size();i++){
+            for(auto i=1;i<stateSize;i++){
                 temp_BDD_ID=and2(temp_BDD_ID, temp_vector.at(i));
             }
 
-            temp2_BDD_ID=and2(temp_BDD_ID, img_next);
-            for(auto i=stateSize-1;i>0;i--){
-                temp3_BDD_ID=or2(coFactorTrue(temp2_BDD_ID,next_states.at(i)),coFactorFalse(temp2_BDD_ID,next_states.at(i)));
-                img_current=or2(coFactorTrue(temp3_BDD_ID, next_states.at(i - 1)), coFactorFalse(temp3_BDD_ID, next_states.at(i - 1)));
+            temp_BDD_ID=and2(temp_BDD_ID, img_next);
+            for(signed int i=stateSize-1;i>=0;i--){
+                temp_BDD_ID=or2(coFactorTrue(temp_BDD_ID,next_states.at(i)),coFactorFalse(temp_BDD_ID,next_states.at(i)));
             }
+            img_current = temp_BDD_ID;
             //STEP10
             C_R_it=or2(C_R,img_current);
 
-        } while (C_R==C_R_it);
+        } while (C_R!=C_R_it);
         return C_R;
     }
 
     bool Reachable::is_reachable(const std::vector<bool> &stateVector) {
-        compute_reachable_states();
-        printUniqueTable();
+        std::vector<BDD_ID> statesUnderTest;
+        std::vector<bool> flags;
+        for(auto i =0; i<stateSize; i++){
+            if (stateVector.at(i) == 0){
+                statesUnderTest.push_back(neg(states.at(i)));
+            }
+            else{
+                statesUnderTest.push_back(states.at(i));
+            }
+        }
+        std::set<BDD_ID> nodes_of_root;
+        findNodes(compute_reachable_states(),nodes_of_root);
+        for (auto &element : statesUnderTest) {
+                unsigned int flagSize = flags.size();
+                for (auto &element1 : nodes_of_root) {
+                if (element == element1)
+                    flags.push_back(1);
+                    break;
+            }
+                if (flagSize==flags.size())
+                    flags.push_back(0);
+        }
+        for(auto i =0; i<stateSize; i++){
+            if (flags.at(i) == 0){
+                return false;
+            }
+        }
         return true;
-
     }
 
 }
