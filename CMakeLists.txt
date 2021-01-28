@@ -36,7 +36,7 @@ add_executable(${TEST_NAME} src/test/Tests.cpp)
 target_link_libraries(${TEST_NAME} gtest_main)
 
 set(TEST_NAME ${PROJECT_NAME}_reachability)
-add_executable(${TEST_NAME} src/reachable/tests.h)
+add_executable(${TEST_NAME} src/reachable/Tests.h)
 target_link_libraries(${TEST_NAME} gtest_main)
 
 enable_testing()
