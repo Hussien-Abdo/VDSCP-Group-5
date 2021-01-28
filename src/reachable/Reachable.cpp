@@ -31,7 +31,7 @@ namespace ClassProject {
            taus.push_back(xnor2(next_states.at(i),transitionFunctions.at(i)));
         }
         tau=taus.at(0);
-        for(int i=1;i<taus.size();i++){
+        for(int i=1;i<stateSize;i++){
            tau=and2(tau, taus.at(i));
         }
     }
@@ -85,7 +85,6 @@ namespace ClassProject {
 
     bool Reachable::is_reachable(const std::vector<bool> &stateVector) {
         std::vector<BDD_ID> statesUnderTest;
-        std::vector<bool> flags;
         for(auto i =0; i<stateSize; i++){
             if (stateVector.at(i) == 0){
                 statesUnderTest.push_back(neg(states.at(i)));
@@ -94,24 +93,15 @@ namespace ClassProject {
                 statesUnderTest.push_back(states.at(i));
             }
         }
-        std::set<BDD_ID> nodes_of_root;
-        findNodes(compute_reachable_states(),nodes_of_root);
-        for (auto &element : statesUnderTest) {
-                unsigned int flagSize = flags.size();
-                for (auto &element1 : nodes_of_root) {
-                if (element == element1)
-                    flags.push_back(1);
-                    break;
-            }
-                if (flagSize==flags.size())
-                    flags.push_back(0);
+        BDD_ID C_R = compute_reachable_states();
+        BDD_ID s = statesUnderTest.at(0);
+        for(auto i=1;i<stateSize;i++){
+            s=or2(s, statesUnderTest.at(i));
         }
-        for(auto i =0; i<stateSize; i++){
-            if (flags.at(i) == 0){
-                return false;
-            }
-        }
-        return true;
+        BDD_ID test = and2(C_R,s);
+        if (test <= C_R)
+            return true;
+        else
+            return false;
     }
-
 }
