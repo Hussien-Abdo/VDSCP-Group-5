@@ -31,8 +31,8 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-set(TEST_NAME ${PROJECT_NAME}_tests)
-add_executable(${TEST_NAME} src/test/Tests.cpp src/reachable/Tests.h)
+set(TEST_NAME ${PROJECT_NAME}_reachability)
+add_executable(${TEST_NAME} src/reachable/Tests.h)
 target_link_libraries(${TEST_NAME} gtest_main)
 
 #set(TEST_Reachability ${PROJECT_NAME}_reachability)
