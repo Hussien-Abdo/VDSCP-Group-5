@@ -31,6 +31,10 @@ namespace ClassProject {
 
     private:
         unsigned int stateSize;
+        std::vector<BDD_ID> states;
+        std::vector<BDD_ID> next_states;
+        BDD_ID C_S0;
+        BDD_ID tau;
     };
 
 }
