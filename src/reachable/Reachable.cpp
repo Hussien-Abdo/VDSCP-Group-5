@@ -96,9 +96,9 @@ namespace ClassProject {
         BDD_ID C_R = compute_reachable_states();
         BDD_ID s = statesUnderTest.at(0);
         for(auto i=1;i<stateSize;i++){
-            s=or2(s, statesUnderTest.at(i));
+            s=and2(s, statesUnderTest.at(i));
         }
-        BDD_ID test = and2(C_R,s);
+        BDD_ID test = or2(C_R,s);
         if (test <= C_R)
             return true;
         else

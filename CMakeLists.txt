@@ -35,6 +35,10 @@ set(TEST_NAME ${PROJECT_NAME}_tests)
 add_executable(${TEST_NAME} src/test/Tests.cpp)
 target_link_libraries(${TEST_NAME} gtest_main)
 
+set(TEST_NAME ${PROJECT_NAME}_reachability)
+add_executable(${TEST_NAME} src/reachable/tests.h)
+target_link_libraries(${TEST_NAME} gtest_main)
+
 enable_testing()
 include(GoogleTest)
 gtest_discover_tests(${TEST_NAME})
