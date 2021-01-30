@@ -35,11 +35,9 @@ namespace ClassProject {
             }
         };
         BDD_ID node_id; /**< BDD_ID counter, keeps track of last used BDD_ID */
-//        std::string node_label; /**<  Internal string used to create label for nodes that represent a function */
-        BDD_ID search_result; /**< Used to store the return values for some functions, to return by reference */
         std::unordered_map<BDD_ID, HashCode> unique_table; /**< unordered_map that represents the ROBDD */
         std::unordered_map<Container, BDD_ID,Container_Hash> computed_table; /**< Table to store the result of each ite(i,t,e) call */
-        std::unordered_map<Container, BDD_ID,Container_Hash> u_table; /**< Table to store the result of each ite(i,t,e) call */
+        std::unordered_map<Container, BDD_ID,Container_Hash> reversed_u_table; /**< Table to store the result of each ite(i,t,e) call */
         BDD_ID trueNode = 1;
         BDD_ID falseNode = 0;
 
@@ -90,17 +88,17 @@ namespace ClassProject {
         size_t uniqueTableSize();
 
 
-        BDD_ID &searchUniqueTable(const HashCode &hashCode);
+        BDD_ID searchUniqueTable(const HashCode &hashCode);
 
         HashCode getHashCode(BDD_ID id);
 
-        BDD_ID &searchComputedTable(const BDD_ID &i,const BDD_ID &t,const BDD_ID &e);
+        BDD_ID searchComputedTable(const BDD_ID &i,const BDD_ID &t,const BDD_ID &e);
 
-        BDD_ID &getHighestVar(const std::set<BDD_ID> &varsSet);
+        BDD_ID getHighestVar(const std::set<BDD_ID> &varsSet);
 
         void printUniqueTable();
 
-        BDD_ID &FindOrAddToUniqueTable(HashCode &hashCode);
+        BDD_ID FindOrAddToUniqueTable(HashCode &hashCode);
     };
 
 }

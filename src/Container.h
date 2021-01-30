@@ -10,7 +10,7 @@
 /**
  * This class is used as a container for 3 BDD_IDs used to store data in unordered_map,
  * In the computed_table (i,t,e) => (e1,e2,e3)
- * In the u_table (high,low,top_var) => (e1,e2,e3)
+ * In the reversed_u_table (high,low,top_var) => (e1,e2,e3)
  */
 typedef size_t BDD_ID;
 
