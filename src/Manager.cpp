@@ -13,9 +13,9 @@ namespace ClassProject {
     Manager::Manager() {
         node_id = 0;
         unique_table.emplace(std::pair<BDD_ID, HashCode>(0, HashCode("0", 0, 0, 0)));
-        u_table.emplace(std::pair<Container, BDD_ID>(Container(0, 0, 0), 0));
+        reversed_u_table.emplace(std::pair<Container, BDD_ID>(Container(0, 0, 0), 0));
         unique_table.emplace(std::pair<BDD_ID, HashCode>(1, HashCode("1", 1, 1, 1)));
-        u_table.emplace(std::pair<Container, BDD_ID>(Container(1, 1, 1), 1));
+        reversed_u_table.emplace(std::pair<Container, BDD_ID>(Container(1, 1, 1), 1));
 //      std::pair<std::tuple<BDD_ID ,BDD_ID ,BDD_ID>, BDD_ID> true_node_r_pair(std::tuple<BDD_ID, BDD_ID, BDD_ID>(1,1,1), 1);
         node_id += 1;
 
@@ -32,7 +32,7 @@ namespace ClassProject {
 //        std::cout << "node_id: " << node_id << "\n";
         HashCode hashCode=HashCode(label, True(), False(), node_id);
         unique_table.emplace(std::pair<BDD_ID, HashCode>(node_id, hashCode));
-        u_table.emplace(std::pair<Container, BDD_ID>(Container(hashCode.getHigh(), hashCode.getLow(), hashCode.getTopVar()), node_id));
+        reversed_u_table.emplace(std::pair<Container, BDD_ID>(Container(hashCode.getHigh(), hashCode.getLow(), hashCode.getTopVar()), node_id));
         return node_id;
     }
 
@@ -116,9 +116,10 @@ namespace ClassProject {
         } else if (i == 0) {
             return e;
         } else {
-            BDD_ID result = searchComputedTable(i, t, e);
-            if (result != -1)
-                return result;
+            auto it = computed_table.find(Container(i, t, e));
+            if (it != computed_table.end()) {
+                return it->second;
+            }
         }
         BDD_ID ite_top_var = getHighestVar(std::set<BDD_ID>{i, t, e});
         BDD_ID i_topVarTrue = coFactorTrue(i, ite_top_var);
@@ -340,20 +341,19 @@ namespace ClassProject {
     }
 
     /**
+     * deprecated
      * Returns the BDD_ID associated with the given HashCode
      *
      * Iterates the unique table looking for a HashCode that matches the given one and returns the BDD_ID associated with it, returns -1 if it's not found.
      * @param hashCode to get its BDD_ID
      * @return BDD_ID if it's found, -1 otherwise.
      */
-    BDD_ID &Manager::searchUniqueTable(const HashCode &hashCode) {
-        auto it = u_table.find(Container(hashCode.getHigh(), hashCode.getLow(), hashCode.getTopVar()));
-        if (it != u_table.end()) {
-//            std::cout << "ComputedSearch: foundllllllllll" << "\n";
+    BDD_ID Manager::searchUniqueTable(const HashCode &hashCode) {
+        auto it = reversed_u_table.find(Container(hashCode.getHigh(), hashCode.getLow(), hashCode.getTopVar()));
+        if (it != reversed_u_table.end()) {
             return it->second;
         }
-        search_result = -1;
-        return search_result;
+        return -1;
     }
 
     /**
@@ -370,19 +370,14 @@ namespace ClassProject {
      * @param hashCode to add or return its BDD_ID
      * @return The BDD_ID associated with the HashCode
      */
-    BDD_ID &Manager::FindOrAddToUniqueTable(HashCode &hashCode) {
-        search_result = searchUniqueTable(hashCode);
-        if (search_result != -1) {
-            return search_result;
+    BDD_ID Manager::FindOrAddToUniqueTable(HashCode &hashCode) {
+        auto it = reversed_u_table.find(Container(hashCode.getHigh(), hashCode.getLow(), hashCode.getTopVar()));
+        if (it != reversed_u_table.end()) {
+            return it->second;
         }
-//        if (unique_table[node_id].getLabel() == "f" && node_label[0] != '!') unique_table[node_id].setLabel("");
         node_id++;
-//        std::cout << "node_id: " << node_id << "\n";
-//        if (node_label.empty()) node_label += "f";
         unique_table.emplace(std::pair<BDD_ID, HashCode>(node_id,hashCode));
-        u_table.emplace(std::pair<Container, BDD_ID>(Container(hashCode.getHigh(), hashCode.getLow(), hashCode.getTopVar()), node_id));
-//        unique_table[node_id].setLabel(node_label);
-//        node_label = "";
+        reversed_u_table.emplace(std::pair<Container, BDD_ID>(Container(hashCode.getHigh(), hashCode.getLow(), hashCode.getTopVar()), node_id));
         return node_id;
     }
 
@@ -397,14 +392,12 @@ namespace ClassProject {
      * @param e Third parameter of ite(i,t,e)
      * @return BDD_ID of the result in the UniqueTable
      */
-    BDD_ID &Manager::searchComputedTable(const BDD_ID &i,const BDD_ID &t,const BDD_ID &e) {
-        search_result=-1;
+    BDD_ID Manager::searchComputedTable(const BDD_ID &i,const BDD_ID &t,const BDD_ID &e) {
         auto it = computed_table.find(Container(i, t, e));
         if (it != computed_table.end()) {
-//            std::cout << "ComputedSearch: computeddddddddddddddddddddddddddddddddddddd" << "\n";
             return it->second;
         }
-        return search_result;
+        return -1;
     }
 
     /** Takes set of vars and returns the highest priority
@@ -413,23 +406,21 @@ namespace ClassProject {
      * @param varsSet Set of variables
      * @return The variable with the highest priority
      */
-    BDD_ID &Manager::getHighestVar(const std::set<BDD_ID> &varSet) {
+    BDD_ID Manager::getHighestVar(const std::set<BDD_ID> &varSet) {
         std::set<BDD_ID> setTmp;
         for (auto &element : varSet) {
             if (!isConstant(element))
                 setTmp.emplace(element);
         }
         if (setTmp.empty()) {
-            search_result=-1;
-            return search_result;
+            throw std::invalid_argument("getHighestVar called with Three constants!!!");
         } else {
             BDD_ID value = *(setTmp.begin());
             for (auto &element : setTmp) {
                 if (topVar(element) < topVar(value))
                     value = element;
             }
-            search_result=topVar(value);
-            return search_result;
+            return topVar(value);
         }
     }
 
