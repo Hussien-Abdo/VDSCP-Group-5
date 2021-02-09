@@ -83,23 +83,16 @@ namespace ClassProject {
         return C_R;
     }
 
-    bool Reachable::is_reachable(const std::vector<bool> &stateVector) {
-        std::vector<BDD_ID> statesUnderTest;
-        for(auto i =0; i<stateSize; i++){
-            if (stateVector.at(i) == 0){
-                statesUnderTest.push_back(neg(states.at(i)));
-            }
-            else{
-                statesUnderTest.push_back(states.at(i));
-            }
-        }
+    bool Reachable::is_reachable(const std::vector<bool>& stateVector){
         BDD_ID C_R = compute_reachable_states();
-        BDD_ID s = statesUnderTest.at(0);
-        for(auto i=1;i<stateSize;i++){
-            s=and2(s, statesUnderTest.at(i));
+        for(int i = 0; i < stateSize; i++) {
+            if(stateVector.at(i)) {
+                C_R = coFactorTrue(C_R,  states.at(i));
+            } else {
+                C_R = coFactorFalse(C_R,  states.at(i));
+            }
         }
-        BDD_ID test = or2(C_R,s);
-        if (test <= C_R)
+        if(C_R == 1)
             return true;
         else
             return false;
