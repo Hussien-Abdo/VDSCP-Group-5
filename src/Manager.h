@@ -37,7 +37,7 @@ namespace ClassProject {
         BDD_ID node_id; /**< BDD_ID counter, keeps track of last used BDD_ID */
         std::unordered_map<BDD_ID, HashCode> unique_table; /**< unordered_map that represents the ROBDD */
         std::unordered_map<Container, BDD_ID,Container_Hash> computed_table; /**< Table to store the result of each ite(i,t,e) call */
-        std::unordered_map<Container, BDD_ID,Container_Hash> reversed_u_table; /**< Table to store the result of each ite(i,t,e) call */
+        std::unordered_map<Container, BDD_ID,Container_Hash> reversed_u_table; /**< Table to store the reverse of  unique_table*/
         BDD_ID trueNode = 1;
         BDD_ID falseNode = 0;
 
