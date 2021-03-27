@@ -27,4 +27,4 @@ First you need to install [BOOST](https://www.boost.org/) ~0.5GB
 ```sudo apt-get install libboost-all-dev```
 
 ### How to use?
-#### TBD :)
+Manager class has all the required functions
